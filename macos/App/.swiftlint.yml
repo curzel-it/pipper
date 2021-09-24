@@ -1,0 +1,11 @@
+identifier_name:
+  max_length:
+    warning: 60
+    error: 90
+  min_length:
+    warning: 1
+    error: 1
+
+disabled_rules:
+  - trailing_whitespace
+  - todo

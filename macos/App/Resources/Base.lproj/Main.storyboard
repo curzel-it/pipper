@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="6Cf-Mz-Lb6">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="19162"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Application-->
+        <scene sceneID="JPo-4y-FX3">
+            <objects>
+                <application id="hnw-xV-0zn" sceneMemberID="viewController">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
+                        <items>
+                            <menuItem title="Pipper" id="1Xt-HY-uBw">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Pipper" systemMenu="apple" id="uQy-DD-JDr">
+                                    <items>
+                                        <menuItem title="Visit copied link" keyEquivalent="V" identifier="visit_copied_link" id="vbr-2K-Mc4" userLabel="Visit Copied">
+                                            <connections>
+                                                <action selector="visitCopiedLink:" target="Voe-Tx-rLC" id="eho-kO-2OB"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Navigate to..." hidden="YES" enabled="NO" identifier="navigate_to_type" id="fkt-iv-Ic9" userLabel="Navigate To">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="navigateTo:" target="Voe-Tx-rLC" id="HFj-H6-FD5"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Reload page" keyEquivalent="r" identifier="reload" id="XQM-Bc-U4A" userLabel="Reload">
+                                            <connections>
+                                                <action selector="reloadPage:" target="Voe-Tx-rLC" id="QuL-I7-2aY"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
+                                        <menuItem title="Quit Pipper" keyEquivalent="q" id="4sb-4s-VLi">
+                                            <connections>
+                                                <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Help" id="wpr-3q-Mcd">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
+                                    <items>
+                                        <menuItem title="Pipper Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                            <connections>
+                                                <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
+                    </connections>
+                </application>
+                <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+                <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="App" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="605" y="-142"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="qeK-SF-8jb">
+            <objects>
+                <windowController storyboardIdentifier="HomeWindowController" id="6Cf-Mz-Lb6" sceneMemberID="viewController">
+                    <window key="window" title="Pipper" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Xg9-ca-Avy">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="425" y="461" width="640" height="480"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                        <value key="minSize" type="size" width="640" height="480"/>
+                        <connections>
+                            <outlet property="delegate" destination="6Cf-Mz-Lb6" id="mtS-o1-KQp"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="uqI-9z-4fG" kind="relationship" relationship="window.shadowedContentViewController" id="iip-f6-PRD"/>
+                    </connections>
+                </windowController>
+                <customObject id="Dm3-tb-6wA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="604" y="336"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="1Fv-qN-Gba">
+            <objects>
+                <viewController id="uqI-9z-4fG" customClass="ViewController" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="T1J-rb-Swa">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mjr-C3-n17">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Mjr-C3-n17" secondAttribute="trailing" id="74Y-5D-VKV"/>
+                            <constraint firstAttribute="bottom" secondItem="Mjr-C3-n17" secondAttribute="bottom" id="CYI-w3-DAu"/>
+                            <constraint firstItem="Mjr-C3-n17" firstAttribute="top" secondItem="T1J-rb-Swa" secondAttribute="top" id="MJK-ZZ-8LG"/>
+                            <constraint firstItem="Mjr-C3-n17" firstAttribute="leading" secondItem="T1J-rb-Swa" secondAttribute="leading" id="xF1-QO-Vup"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="Mjr-C3-n17" id="hDF-MH-brX"/>
+                    </connections>
+                </viewController>
+                <customObject id="lam-Ki-xJ2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="Us6-sn-JPL"/>
+            </objects>
+            <point key="canvasLocation" x="604" y="1097"/>
+        </scene>
+    </scenes>
+</document>
