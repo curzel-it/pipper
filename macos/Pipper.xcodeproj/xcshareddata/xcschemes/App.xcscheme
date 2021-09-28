@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1EFD845124474836008D2266"
-               BuildableName = "App.app"
+               BuildableName = "Pipper.app"
                BlueprintName = "Pipper"
                ReferencedContainer = "container:Pipper.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1EFD845124474836008D2266"
-            BuildableName = "App.app"
+            BuildableName = "Pipper.app"
             BlueprintName = "Pipper"
             ReferencedContainer = "container:Pipper.xcodeproj">
          </BuildableReference>
@@ -68,7 +68,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1EFD845124474836008D2266"
-            BuildableName = "App.app"
+            BuildableName = "Pipper.app"
             BlueprintName = "Pipper"
             ReferencedContainer = "container:Pipper.xcodeproj">
          </BuildableReference>
