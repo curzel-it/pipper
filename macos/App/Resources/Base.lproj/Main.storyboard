@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="6Cf-Mz-Lb6">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
         <plugIn identifier="com.apple.WebKit2IBPlugin" version="19162"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,18 +19,18 @@
                                     <items>
                                         <menuItem title="Visit copied link" keyEquivalent="V" identifier="visit_copied_link" id="vbr-2K-Mc4" userLabel="Visit Copied">
                                             <connections>
-                                                <action selector="visitCopiedLink:" target="Voe-Tx-rLC" id="eho-kO-2OB"/>
+                                                <action selector="onMenuItemSelected:" target="Voe-Tx-rLC" id="o6K-Aj-z5d"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Navigate to..." hidden="YES" enabled="NO" identifier="navigate_to_type" id="fkt-iv-Ic9" userLabel="Navigate To">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="navigateTo:" target="Voe-Tx-rLC" id="HFj-H6-FD5"/>
+                                                <action selector="onMenuItemSelected:" target="Voe-Tx-rLC" id="tYr-dj-h8j"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Reload page" keyEquivalent="r" identifier="reload" id="XQM-Bc-U4A" userLabel="Reload">
                                             <connections>
-                                                <action selector="reloadPage:" target="Voe-Tx-rLC" id="QuL-I7-2aY"/>
+                                                <action selector="onMenuItemSelected:" target="Voe-Tx-rLC" id="QaH-9k-0xM"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
@@ -61,7 +62,7 @@
                 </application>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="App" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Pipper" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="605" y="-142"/>
         </scene>
@@ -90,7 +91,7 @@
         <!--View Controller-->
         <scene sceneID="1Fv-qN-Gba">
             <objects>
-                <viewController id="uqI-9z-4fG" customClass="ViewController" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uqI-9z-4fG" customClass="ViewController" customModule="Pipper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="T1J-rb-Swa">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                         <autoresizingMask key="autoresizingMask"/>

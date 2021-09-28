@@ -57,7 +57,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "https://www.youtube.com/watch?v=GufUPlP1V4I"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>

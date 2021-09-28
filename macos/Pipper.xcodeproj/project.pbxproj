@@ -17,6 +17,7 @@
 		1EFD845624474836008D2266 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFD845524474836008D2266 /* AppDelegate.swift */; };
 		1EFD845D24474839008D2266 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EFD845B24474839008D2266 /* Main.storyboard */; };
 		A60B002D26FDF3E500E5BA8C /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60B002C26FDF3E500E5BA8C /* Models.swift */; };
+		A683B93827039B0900961523 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A683B93727039B0900961523 /* ViewModel.swift */; };
 		A6FF244B26FDE66A005106D4 /* homepage.html in Resources */ = {isa = PBXBuildFile; fileRef = A6FF244A26FDE66A005106D4 /* homepage.html */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		1EFD845E24474839008D2266 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1EFD845F24474839008D2266 /* app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = app.entitlements; sourceTree = "<group>"; };
 		A60B002C26FDF3E500E5BA8C /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		A683B93727039B0900961523 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		A6FF244A26FDE66A005106D4 /* homepage.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = homepage.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +97,7 @@
 				A60B002C26FDF3E500E5BA8C /* Models.swift */,
 				1EFD851C24475CA4008D2266 /* Resources */,
 				1E8E61872448F432009D6257 /* ViewController.swift */,
+				A683B93727039B0900961523 /* ViewModel.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 			files = (
 				1E8E61882448F433009D6257 /* ViewController.swift in Sources */,
 				1EFD845624474836008D2266 /* AppDelegate.swift in Sources */,
+				A683B93827039B0900961523 /* ViewModel.swift in Sources */,
 				A60B002D26FDF3E500E5BA8C /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

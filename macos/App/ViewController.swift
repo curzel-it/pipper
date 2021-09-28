@@ -11,13 +11,15 @@ import WebKit
 import RxSwift
 
 class ViewController: NSViewController {
-            
+    
     @IBOutlet weak var webView: WKWebView!
+    
+    let viewModel = ViewModel.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AppDelegate.navigationRequest.subscribe(onNext: { request in
+        viewModel.navigationRequest.subscribe(onNext: { request in
             switch request {
             case .url(let url):
                 self.webView.load(URLRequest(url: url))
@@ -31,12 +33,13 @@ class ViewController: NSViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        self.setupWindow()
-        self.setupWebView()
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.viewModel.viewDidAppear()
+        self.setupWindow()
+        self.setupWebView()
         self.positionWindow()
     }
     
@@ -45,7 +48,7 @@ class ViewController: NSViewController {
 
 // MARK: - Window
 
-extension ViewController {
+extension ViewController: NSWindowDelegate {
     
     func setupWindow() {
         guard let window = self.view.window else { return }
@@ -53,6 +56,7 @@ extension ViewController {
         window.minSize = CGSize(width: 100, height: 100)
         window.level = .mainMenu
         window.collectionBehavior = .canJoinAllSpaces
+        window.delegate = self
         // window.styleMask = .borderless
         // window.isMovableByWindowBackground = true
         // window.hasShadow = false
@@ -61,13 +65,21 @@ extension ViewController {
     }
     
     func positionWindow() {
-        DispatchQueue.main.async {
-            guard let window = self.view.window else { return }
-            window.setFrame(
-                CGRect(origin: .zero, size: CGSize(width: 320, height: 480)),
-                display: true
-            )
-        }
+        guard let window = self.view.window else { return }
+        window.setFrame(
+            viewModel.initialWindowFrame,
+            display: true
+        )
+    }
+    
+    func windowDidMove(_ notification: Notification) {
+        guard let window = self.view.window else { return }
+        viewModel.windowFrameChanged(to: window.frame)
+    }
+    
+    func windowDidResize(_ notification: Notification) {
+        guard let window = self.view.window else { return }
+        viewModel.windowFrameChanged(to: window.frame)
     }
 }
 
@@ -86,10 +98,6 @@ extension ViewController: WKNavigationDelegate {
         self.webView.loadHTMLString(html, baseURL: nil)
     }
     
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        if let s = webView.title { self.view.window?.title = s }
-    }
-    
     func webView(
         _ webView: WKWebView,
         decidePolicyFor navigationAction: WKNavigationAction,
@@ -101,6 +109,7 @@ extension ViewController: WKNavigationDelegate {
         }
         
         switch url.absoluteURL.lastPathComponent {
+            
         case kProjectGitHub:
             let url = URL(string: kProjectGitHubURL)!
             NSWorkspace.shared.open(url)
