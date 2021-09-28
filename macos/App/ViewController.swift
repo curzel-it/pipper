@@ -53,18 +53,18 @@ extension ViewController {
         window.minSize = CGSize(width: 100, height: 100)
         window.level = .mainMenu
         window.collectionBehavior = .canJoinAllSpaces
-        // window.isOpaque = false
-        // window.hasShadow = false
-        // window.backgroundColor = .clear
         // window.styleMask = .borderless
         // window.isMovableByWindowBackground = true
+        // window.hasShadow = false
+        // window.isOpaque = false
+        // window.backgroundColor = .clear
     }
     
     func positionWindow() {
         DispatchQueue.main.async {
             guard let window = self.view.window else { return }
             window.setFrame(
-                CGRect(origin: .zero, size: CGSize(width: 300, height: 240)),
+                CGRect(origin: .zero, size: CGSize(width: 320, height: 480)),
                 display: true
             )
         }
@@ -84,6 +84,10 @@ extension ViewController: WKNavigationDelegate {
         guard let url = Bundle.main.url(forResource: "homepage", withExtension: "html") else { return }
         guard let html = try? String(contentsOf: url) else { return }
         self.webView.loadHTMLString(html, baseURL: nil)
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if let s = webView.title { self.view.window?.title = s }
     }
     
     func webView(

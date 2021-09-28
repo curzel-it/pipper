@@ -55,6 +55,10 @@
             argument = "https://www.google.com"
             isEnabled = "NO">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "https://www.youtube.com/watch?v=GufUPlP1V4I"
+            isEnabled = "YES">
+         </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
