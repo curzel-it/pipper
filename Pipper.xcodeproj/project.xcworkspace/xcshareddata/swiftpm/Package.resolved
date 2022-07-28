@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "onwindow",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/curzel-it/OnWindow",
+      "state" : {
+        "branch" : "main",
+        "revision" : "d272b57aacf6068b83ff83067332878d4cb6a423"
+      }
+    },
+    {
+      "identity" : "schwifty",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/curzel-it/schwifty",
+      "state" : {
+        "branch" : "main",
+        "revision" : "4ca67852846f45b9a46b5e0191e47cd6d0118d96"
+      }
+    }
+  ],
+  "version" : 2
+}

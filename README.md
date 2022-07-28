@@ -1,11 +1,9 @@
 # Pipper
 
-This is literally just a webview in a window setup to be floating over other apps.
+Just a webview in a window configured to be floating over other apps.
 
 I sometimes like to have a window stay always visible on screen, so I did this.
 
-Use the "Navigate" items in the Menu Bar to type in or paste the URL to visit.
+If you have an ultrawide monitor I am sure you can understand!
 
-You can also just launch the app from terminal:
-
-    open {link} -a /Applications/Pipper.app
+![Demo](demo.gif)
