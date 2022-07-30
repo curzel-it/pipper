@@ -5,18 +5,23 @@
 //  Created by Federico Curzel on 28/07/22.
 //
 
+import Combine
 import SwiftUI
 
 class AppState: ObservableObject {
     
     static let global = AppState()
+        
+    let runtimeEvents = CurrentValueSubject<RuntimeEvent, Never>(.loading)
     
-    let webViewNavigationDelegate = NavigationDelegate()
+    var webViewDelegate: WebViewDelegate!
     var windowManager: WindowManager!
     
     @Published var showSettings = false
     @Published var showSearch = false
-    @Published var navigationRequest: NavigationRequest = .urlString(urlString: "https://news.ycombinator.com/")  // .mainBundleHtmlFile(name: "homepage")
+    @Published var navigationRequest: NavigationRequest = .mainBundleHtmlFile(
+        name: "homepage"
+    )
     
     @Published var searchEngineBaseUrl: String = "" {
         didSet {
@@ -47,5 +52,12 @@ class AppState: ObservableObject {
         searchEngineBaseUrl = storedSearchEngineBaseUrl
         size = CGSize(width: storedWidth, height: storedHeight)
         windowManager = WindowManager(appState: self)
+        webViewDelegate = WebViewDelegate(appState: self)
     }
+}
+
+enum RuntimeEvent {
+    case loading
+    case launching
+    case closing
 }

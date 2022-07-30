@@ -42,13 +42,14 @@ class Size {
     static let i9b24w370 = CGSize(width: 370, height: 987)
     static let i9b24w420 = CGSize(width: 420, height: 1120)
     
-    static let i16b9w430 = CGSize(width: 430, height: 242)
-    static let i16b9w490 = CGSize(width: 490, height: 275)
-    static let i16b9w550 = CGSize(width: 550, height: 309)
+    static let i16b11w430 = CGSize(width: 430, height: 296)
+    static let i16b11w490 = CGSize(width: 490, height: 337)
+    static let i16b11w550 = CGSize(width: 550, height: 378)
     
-    static let i1b2w240 = CGSize(width: 240, height: 240)
-    static let i1b2w360 = CGSize(width: 360, height: 360)
-    static let i1b2w480 = CGSize(width: 480, height: 480)
+    static let i1b1w240 = CGSize(width: 240, height: 240)
+    static let i1b1w360 = CGSize(width: 360, height: 360)
+    static let i1b1w440 = CGSize(width: 440, height: 440)
+    static let i1b1w520 = CGSize(width: 520, height: 520)
 }
 
 extension CGSize: Hashable {

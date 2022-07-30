@@ -16,10 +16,11 @@ class WindowManager: NSObject, NSWindowDelegate {
     
     init(appState: AppState) {
         self.appState = appState
+        appState.runtimeEvents.send(.launching)
     }
     
     func setup(window: NSWindow) {
-        window.minSize = Size.i1b2w240
+        window.minSize = Size.i1b1w240
         window.level = .mainMenu
         window.collectionBehavior = .canJoinAllSpaces
         window.delegate = self
@@ -35,5 +36,9 @@ class WindowManager: NSObject, NSWindowDelegate {
             appState.size = frameSize
         }
         return frameSize
+    }
+    
+    func windowWillClose(_ notification: Notification) {
+        appState.runtimeEvents.send(.closing)
     }
 }

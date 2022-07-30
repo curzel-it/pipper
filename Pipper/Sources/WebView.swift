@@ -32,7 +32,7 @@ private class MyWebView: WKWebView {
     init(with appState: AppState) {
         self.appState = appState
         super.init(frame: .zero, configuration: WKWebViewConfiguration())
-        loadConfig()
+        appState.webViewDelegate.setup(webView: self)
         loadUserAgent()
         loadRequests()
     }
@@ -52,14 +52,6 @@ private class MyWebView: WKWebView {
         requestsSink = appState.$navigationRequest.sink { request in
             self.load(request)
         }
-    }
-    
-    private func loadConfig() {
-        customUserAgent = appState.userAgent
-        allowsBackForwardNavigationGestures = true
-        allowsMagnification = true
-        allowsLinkPreview = false
-        navigationDelegate = appState.webViewNavigationDelegate
     }
     
     func load(_ request: NavigationRequest) {
