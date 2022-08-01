@@ -13,14 +13,18 @@ class WebViewDelegate: NSObject, WKNavigationDelegate {
         
     private var eventsSink: AnyCancellable!
     
-    private var appState: AppState
+    private let appState = AppState.global
     
     weak var webView: WKWebView?
     
-    init(appState: AppState) {
-        self.appState = appState
+    override init() {
         super.init()
-        
+        setKillWebViewWhenWindowCloses()
+    }
+
+    private func setKillWebViewWhenWindowCloses() {
+        // Video playing in the WKWebView continue to play after the window
+        // gets closed, this does the trick.
         eventsSink = appState.runtimeEvents.sink { [weak self] event in
             guard case .closing = event else { return }
             guard let webView = self?.webView else { return }

@@ -18,21 +18,42 @@ struct Search: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            TextField("Search...", text: $viewModel.text)
+            TextField("Search + Enter", text: $viewModel.text)
                 .textFieldStyle(.plain)
                 .padding()
                 .onSubmit(viewModel.searchOrVisit)
                 .focused($focused)
                 .onAppear { focused = true }
             
-            Button("Search", action: viewModel.searchOrVisit)
-                .padding(.trailing)
+            Button(action: viewModel.searchOrVisit) {
+                Image(systemName: "magnifyingglass")
+            }
+            .keyboardShortcut(.return)
+            .onHover(hint: "RETURN 􀅇\nSearches your input")
+            
+            Button(action: viewModel.close) {
+                Image(systemName: "xmark")
+            }
+            .keyboardShortcut(.cancelAction)
+            .onHover(hint: "ESC 􀆧\nCloses the search bar")
+            
+            Button(action: viewModel.visitSearchEngineHome) {
+                Image(systemName: "arrow.up.left.and.arrow.down.right")
+            }
+            .keyboardShortcut(.init("E"), modifiers: [.command, .shift])
+            .onHover(hint: "CMD + Shift + E\nOpen Search Engine homepage")
         }
+        .padding(.horizontal)
+        .background(Color.secondaryBackground)
+        .cornerRadius(8)
+        .shadow(radius: 16)
+        .padding(.horizontal, 40)
+        .onSubmit(viewModel.searchOrVisit)
     }
 }
 
 class SearchViewModel: ObservableObject {
-        
+    
     @Published var text: String = ""
     
     var appState: AppState { AppState.global }
@@ -47,6 +68,14 @@ class SearchViewModel: ObservableObject {
         close()
     }
     
+    func visitSearchEngineHome() {
+        withAnimation {
+            appState.showSearch = false
+            appState.showHome = false
+            appState.navigationRequest = .urlString(urlString: appState.searchEngineBaseUrl)
+        }
+    }
+    
     private func search() {
         let keywords = text
             .trimmingCharacters(in: .whitespacesAndNewlines)
@@ -55,7 +84,10 @@ class SearchViewModel: ObservableObject {
         let urlString = "\(appState.searchEngineBaseUrl)\(keywords ?? "")"
         
         guard let url = URL(string: urlString) else { return }
-        appState.navigationRequest = .url(url: url)
+        withAnimation {
+            appState.showHome = false
+            appState.navigationRequest = .url(url: url)
+        }
     }
     
     func close() {
@@ -65,6 +97,8 @@ class SearchViewModel: ObservableObject {
     }
     
     func clear() {
-        text = ""
+        withAnimation {
+            text = ""
+        }
     }
 }

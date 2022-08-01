@@ -10,22 +10,26 @@ import SwiftUI
 
 class WindowManager: NSObject, NSWindowDelegate {
         
-    let appState: AppState
+    let appState = AppState.global
     
     private var sizeSink: AnyCancellable?
+    private var hoverSink: AnyCancellable?
     
-    init(appState: AppState) {
-        self.appState = appState
+    override init() {
+        super.init()
         appState.runtimeEvents.send(.launching)
     }
     
     func setup(window: NSWindow) {
         window.minSize = Size.i1b1w240
-        window.level = .mainMenu
         window.collectionBehavior = .canJoinAllSpaces
+        window.titlebarAppearsTransparent = true
+        window.titlebarSeparatorStyle = .none
         window.delegate = self
         
-        sizeSink?.cancel()
+        hoverSink = appState.$isHovering.sink { shouldHover in
+            window.level = shouldHover ? .mainMenu : .normal
+        }
         sizeSink = appState.$size.sink { size in
             window.setContentSize(size)
         }

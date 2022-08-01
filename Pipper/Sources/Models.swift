@@ -14,7 +14,6 @@ enum NavigationRequest {
     case html(text: String, baseURL: URL?)
     case urlString(urlString: String)
     case url(url: URL)
-    case mainBundleHtmlFile(name: String)
 }
 
 // MARK: - User Agents
@@ -28,6 +27,14 @@ class UserAgent {
     static let iPad = "Mozilla/5.0 (iPad; CPU OS 15_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/103.0.5060.63 Mobile/15E148 Safari/604.1"
     
     static let macBook = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15"
+}
+
+// MARK: - Search Engines
+
+class SearchEngine {
+    
+    static let google = "https://google.com/search?q="
+    static let duckDuckGo = "https://duckduckgo.com?q="
 }
 
 // MARK: - Sizes
@@ -58,4 +65,14 @@ extension CGSize: Hashable {
         hasher.combine(width)
         hasher.combine(height)
     }
+}
+
+// MARK: - Bookmarks
+
+struct Bookmark: Codable, Identifiable, Equatable {
+    
+    let id: String
+    let title: String
+    let url: String
+    let icon: String
 }

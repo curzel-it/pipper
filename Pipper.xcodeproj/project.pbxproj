@@ -22,6 +22,13 @@
 		1E628D2028916BEE00570FCC /* PipperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E628D1F28916BEE00570FCC /* PipperUITestsLaunchTests.swift */; };
 		1E628D342891745000570FCC /* homepage.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E628D322891745000570FCC /* homepage.html */; };
 		1E628D352891745000570FCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E628D332891745000570FCC /* Assets.xcassets */; };
+		1E93EEBD2895BE84006CF96A /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93EEBC2895BE84006CF96A /* Homepage.swift */; };
+		1E93EEC02895C8DD006CF96A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1E93EEBF2895C8DD006CF96A /* Kingfisher */; };
+		1E93EEC22895D1E2006CF96A /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93EEC12895D1E2006CF96A /* UserMessages.swift */; };
+		1E93EEC62895D84E006CF96A /* Bookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93EEC52895D84E006CF96A /* Bookmarks.swift */; };
+		1E93EEC82895D941006CF96A /* Forms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93EEC72895D941006CF96A /* Forms.swift */; };
+		1E93EECB289668F3006CF96A /* BookmarkEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93EECA289668F3006CF96A /* BookmarkEditor.swift */; };
+		1E93EECD289687CD006CF96A /* MouseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93EECC289687CD006CF96A /* MouseHandler.swift */; };
 		1ED28C9E2892BC1100D35DA4 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED28C9D2892BC1100D35DA4 /* Models.swift */; };
 		1ED28CA02892C4A200D35DA4 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED28C9F2892C4A200D35DA4 /* WindowManager.swift */; };
 		1ED28CA22892CF3700D35DA4 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED28CA12892CF3700D35DA4 /* Search.swift */; };
@@ -63,6 +70,12 @@
 		1E628D1F28916BEE00570FCC /* PipperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipperUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1E628D322891745000570FCC /* homepage.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = homepage.html; sourceTree = "<group>"; };
 		1E628D332891745000570FCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1E93EEBC2895BE84006CF96A /* Homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homepage.swift; sourceTree = "<group>"; };
+		1E93EEC12895D1E2006CF96A /* UserMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessages.swift; sourceTree = "<group>"; };
+		1E93EEC52895D84E006CF96A /* Bookmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmarks.swift; sourceTree = "<group>"; };
+		1E93EEC72895D941006CF96A /* Forms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forms.swift; sourceTree = "<group>"; };
+		1E93EECA289668F3006CF96A /* BookmarkEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkEditor.swift; sourceTree = "<group>"; };
+		1E93EECC289687CD006CF96A /* MouseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseHandler.swift; sourceTree = "<group>"; };
 		1ED0A57D2893C3A200272CEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1ED28C9D2892BC1100D35DA4 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		1ED28C9F2892C4A200D35DA4 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
@@ -75,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E93EEC02895C8DD006CF96A /* Kingfisher in Frameworks */,
 				1E3AFC982891C03A00C6A465 /* OnWindow in Frameworks */,
 				1E34738728928C7600E8C840 /* Schwifty in Frameworks */,
 			);
@@ -159,13 +173,19 @@
 			isa = PBXGroup;
 			children = (
 				1E2EBC3E289282180008ECB3 /* AppState.swift */,
+				1E93EECA289668F3006CF96A /* BookmarkEditor.swift */,
+				1E93EEC52895D84E006CF96A /* Bookmarks.swift */,
 				1E2EBC40289282580008ECB3 /* Colors.swift */,
 				1E2EBC3C289281FF0008ECB3 /* ContentView.swift */,
+				1E93EEC72895D941006CF96A /* Forms.swift */,
+				1E93EEBC2895BE84006CF96A /* Homepage.swift */,
 				1ED28C9D2892BC1100D35DA4 /* Models.swift */,
+				1E93EECC289687CD006CF96A /* MouseHandler.swift */,
 				1E628D0128916BED00570FCC /* MyApp.swift */,
 				1ED28CA12892CF3700D35DA4 /* Search.swift */,
 				1E2EBC3A289280670008ECB3 /* Settings.swift */,
 				1E2EBC3728927D650008ECB3 /* Toolbar.swift */,
+				1E93EEC12895D1E2006CF96A /* UserMessages.swift */,
 				1E3AFC992891C25100C6A465 /* WebView.swift */,
 				1E3AFC9B2891C7C200C6A465 /* WebViewDelegate.swift */,
 				1ED28C9F2892C4A200D35DA4 /* WindowManager.swift */,
@@ -193,6 +213,7 @@
 			packageProductDependencies = (
 				1E3AFC972891C03A00C6A465 /* OnWindow */,
 				1E34738628928C7600E8C840 /* Schwifty */,
+				1E93EEBF2895C8DD006CF96A /* Kingfisher */,
 			);
 			productName = Pipper;
 			productReference = 1E628CFE28916BED00570FCC /* Pipper.app */;
@@ -269,6 +290,7 @@
 			packageReferences = (
 				1E3AFC962891C03A00C6A465 /* XCRemoteSwiftPackageReference "OnWindow" */,
 				1E34738528928C7600E8C840 /* XCRemoteSwiftPackageReference "schwifty" */,
+				1E93EEBE2895C8DD006CF96A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 1E628CFF28916BED00570FCC /* Products */;
 			projectDirPath = "";
@@ -335,13 +357,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				1ED28CA22892CF3700D35DA4 /* Search.swift in Sources */,
+				1E93EEC62895D84E006CF96A /* Bookmarks.swift in Sources */,
 				1E3AFC9A2891C25100C6A465 /* WebView.swift in Sources */,
 				1E2EBC41289282580008ECB3 /* Colors.swift in Sources */,
+				1E93EEBD2895BE84006CF96A /* Homepage.swift in Sources */,
+				1E93EEC22895D1E2006CF96A /* UserMessages.swift in Sources */,
+				1E93EECD289687CD006CF96A /* MouseHandler.swift in Sources */,
+				1E93EEC82895D941006CF96A /* Forms.swift in Sources */,
 				1E3AFC9C2891C7C200C6A465 /* WebViewDelegate.swift in Sources */,
 				1E2EBC3D289281FF0008ECB3 /* ContentView.swift in Sources */,
 				1E2EBC3F289282180008ECB3 /* AppState.swift in Sources */,
 				1E2EBC3828927D650008ECB3 /* Toolbar.swift in Sources */,
 				1ED28C9E2892BC1100D35DA4 /* Models.swift in Sources */,
+				1E93EECB289668F3006CF96A /* BookmarkEditor.swift in Sources */,
 				1E2EBC3B289280670008ECB3 /* Settings.swift in Sources */,
 				1E628D0228916BED00570FCC /* MyApp.swift in Sources */,
 				1ED28CA02892C4A200D35DA4 /* WindowManager.swift in Sources */,
@@ -684,6 +712,14 @@
 				kind = branch;
 			};
 		};
+		1E93EEBE2895C8DD006CF96A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -696,6 +732,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1E3AFC962891C03A00C6A465 /* XCRemoteSwiftPackageReference "OnWindow" */;
 			productName = OnWindow;
+		};
+		1E93EEBF2895C8DD006CF96A /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E93EEBE2895C8DD006CF96A /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

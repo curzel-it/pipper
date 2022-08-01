@@ -14,7 +14,7 @@ struct WebView: NSViewRepresentable {
     @EnvironmentObject var appState: AppState
         
     func makeNSView(context: Context) -> some NSView {
-        return MyWebView(with: appState)
+        return MyWebView()
     }
     
     func updateNSView(_ nsView: NSViewType, context: Context) {
@@ -24,13 +24,12 @@ struct WebView: NSViewRepresentable {
 
 private class MyWebView: WKWebView {
     
-    let appState: AppState
+    let appState = AppState.global
     
     private var userAgentSink: AnyCancellable!
     private var requestsSink: AnyCancellable!
     
-    init(with appState: AppState) {
-        self.appState = appState
+    init() {
         super.init(frame: .zero, configuration: WKWebViewConfiguration())
         appState.webViewDelegate.setup(webView: self)
         loadUserAgent()
@@ -69,13 +68,6 @@ private class MyWebView: WKWebView {
             if let url = URL(string: urlString) {
                 load(.url(url: url))
             }
-            
-        case .mainBundleHtmlFile(let name):
-            guard let url = Bundle.main.url(
-                forResource: name, withExtension: "html"
-            ) else { return }
-            guard let contents = try? String(contentsOf: url) else { return }
-            load(.html(text: contents, baseURL: nil))
         }
     }
 }

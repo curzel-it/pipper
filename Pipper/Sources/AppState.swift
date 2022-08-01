@@ -14,14 +14,20 @@ class AppState: ObservableObject {
         
     let runtimeEvents = CurrentValueSubject<RuntimeEvent, Never>(.loading)
     
-    var webViewDelegate: WebViewDelegate!
-    var windowManager: WindowManager!
+    lazy var webViewDelegate: WebViewDelegate = WebViewDelegate()
+    lazy var windowManager: WindowManager = WindowManager()
     
-    @Published var showSettings = false
+    @Published var userMessage: UserMessage?
+    @Published var isHovering = true
+    @Published var showHome = true
     @Published var showSearch = false
-    @Published var navigationRequest: NavigationRequest = .mainBundleHtmlFile(
-        name: "homepage"
-    )
+    @Published var navigationRequest: NavigationRequest = .urlString(urlString: SearchEngine.duckDuckGo)
+    
+    @Published var bookmarks: [Bookmark] = [] {
+        didSet {
+            saveBookmarks()
+        }
+    }
     
     @Published var searchEngineBaseUrl: String = "" {
         didSet {
@@ -41,18 +47,31 @@ class AppState: ObservableObject {
             storedHeight = size.height
         }
     }
-    
-    @AppStorage("searchEngineBaseUrl") private var storedSearchEngineBaseUrl: String = "https://duckduckgo.com/?q="
+        
+    @AppStorage("bookmarks") private var storedBookmarks: Data?
+    @AppStorage("searchEngineBaseUrl") private var storedSearchEngineBaseUrl: String = SearchEngine.duckDuckGo
     @AppStorage("width") private var storedWidth: Double = Size.i9b24w320.width
     @AppStorage("height") private var storedHeight: Double = Size.i9b24w320.height
     @AppStorage("userAgent") private var storedUserAgent: String = UserAgent.iPad
     
-    init() {
+    private init() {
         userAgent = storedUserAgent
         searchEngineBaseUrl = storedSearchEngineBaseUrl
         size = CGSize(width: storedWidth, height: storedHeight)
-        windowManager = WindowManager(appState: self)
-        webViewDelegate = WebViewDelegate(appState: self)
+        loadBookmarks()
+    }
+    
+    func loadBookmarks() {
+        if let data = storedBookmarks,
+            let value = try? JSONDecoder().decode([Bookmark].self, from: data) {
+            self.bookmarks = value
+        }
+    }
+    
+    func saveBookmarks() {
+        if let data = try? JSONEncoder().encode(bookmarks) {
+            self.storedBookmarks = data
+        }
     }
 }
 

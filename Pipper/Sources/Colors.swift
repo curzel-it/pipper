@@ -13,4 +13,8 @@ extension Color {
     static let secondaryLabel = Color(nsColor: NSColor.secondaryLabelColor)
     static let tertiaryLabel = Color(nsColor: NSColor.tertiaryLabelColor)
     static let secondaryBackground = Color(nsColor: NSColor.windowBackgroundColor)
+    
+    static let error = Color.red
+    static let warning = Color.orange
+    static let success = Color.green
 }
