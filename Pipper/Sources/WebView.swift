@@ -25,7 +25,7 @@ struct WebView: NSViewRepresentable {
 private class MyWebView: WKWebView {
     
     let appState: AppState
-    let globalState: GlobalState = .shared
+    let storage: StorageService = .shared
     
     private var userAgentSink: AnyCancellable!
     private var requestsSink: AnyCancellable!
@@ -43,7 +43,7 @@ private class MyWebView: WKWebView {
     }
     
     private func loadUserAgent() {
-        userAgentSink = globalState.$userAgent.sink { userAgent in
+        userAgentSink = storage.$userAgent.sink { userAgent in
             self.customUserAgent = userAgent
             self.reload()
         }
@@ -79,7 +79,7 @@ private class MyWebView: WKWebView {
             url = inputUrl
         } else {
             let param = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-            let urlString = "\(globalState.searchEngineBaseUrl)\(param ?? "")"
+            let urlString = "\(storage.searchEngineBaseUrl)\(param ?? "")"
             url = URL(string: urlString)
         }
         if let url = url {

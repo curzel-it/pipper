@@ -33,6 +33,49 @@ extension UserMessage: Equatable {
     }
 }
 
+struct UserMessages: View {
+    
+    @EnvironmentObject var appState: AppState
+    
+    var body: some View {
+        if let message = appState.userMessage {
+            Text(message.text)
+                .multilineTextAlignment(.center)
+                .foregroundColor(message.severity.color)
+                .padding()
+                .background(Color.secondaryBackground)
+                .cornerRadius(8)
+                .shadow(radius: 16)
+                .positioned(.bottom)
+                .padding(.bottom, 50)
+                .onReceive(appState.$userMessage) { message in
+                    if let message = message {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + message.duracy.rawValue) {
+                            if appState.userMessage == message {
+                                withAnimation {
+                                    appState.userMessage = nil
+                                }
+                            }
+                        }
+                    }
+                }
+        }
+    }
+}
+
+extension UserMessage.Severity {
+    
+    var color: Color {
+        switch self {
+        case .error: return .error
+        case .warning: return .warning
+        case .info: return .label
+        case .success: return .success
+        }
+    }
+}
+
+
 extension View {
     
     func onHover(hint: String) -> some View {

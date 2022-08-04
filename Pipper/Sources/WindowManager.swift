@@ -11,7 +11,7 @@ import SwiftUI
 class WindowManager: NSObject, NSWindowDelegate {
     
     private let appState: AppState
-    private let globalState: GlobalState = .shared
+    private let storage: StorageService = .shared
     
     private var sizeSink: AnyCancellable?
     private var hoverSink: AnyCancellable?
@@ -19,7 +19,7 @@ class WindowManager: NSObject, NSWindowDelegate {
     init(appState: AppState) {
         self.appState = appState
         super.init()
-        globalState.runtimeEvents.send(.launching)
+        appState.runtimeEvents.send(.launching)
     }
     
     func setup(window: NSWindow) {
@@ -32,19 +32,19 @@ class WindowManager: NSObject, NSWindowDelegate {
         hoverSink = appState.$isHovering.sink { shouldHover in
             window.level = shouldHover ? .mainMenu : .normal
         }
-        sizeSink = globalState.$size.sink { size in
+        sizeSink = storage.$size.sink { size in
             window.setContentSize(size)
         }
     }
     
     func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
-        if globalState.size != frameSize {
-            globalState.size = frameSize
+        if storage.size != frameSize {
+            storage.size = frameSize
         }
         return frameSize
     }
     
     func windowWillClose(_ notification: Notification) {
-        globalState.runtimeEvents.send(.closing)
+        appState.runtimeEvents.send(.closing)
     }
 }

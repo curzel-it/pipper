@@ -39,46 +39,46 @@ private struct Footer: View {
 
 private struct SearchEngineSection: View {
     
-    @EnvironmentObject var globalState: GlobalState
+    @EnvironmentObject var storage: StorageService
     
     var body: some View {
         FormField(title: "Search Engine") {
-            Picker(selection: $globalState.searchEngineBaseUrl) {
+            Picker(selection: $storage.searchEngineBaseUrl) {
                 Text("DuckDuckGo").tag(SearchEngine.duckDuckGo)
                 Text("Google").tag(SearchEngine.google)
             } label: { EmptyView() }
         }
         FormField(title: "Search Engine Base Url") {
-            TextField("https://...?q=", text: $globalState.searchEngineBaseUrl)
+            TextField("https://...?q=", text: $storage.searchEngineBaseUrl)
         }
     }
 }
 
 private struct UserAgentSection: View {
     
-    @EnvironmentObject var globalState: GlobalState
+    @EnvironmentObject var storage: StorageService
         
     var body: some View {
         FormField(title: "User Agent") {
-            Picker(selection: $globalState.userAgent) {
+            Picker(selection: $storage.userAgent) {
                 Text("iPhone / Safari").tag(UserAgent.iPhone)
                 Text("iPad / Safari").tag(UserAgent.iPad)
                 Text("Desktop / Safari").tag(UserAgent.macBook)
             } label: { EmptyView() }
         }
         FormField(title: "Custom User Agent") {
-            TextField("", text: $globalState.userAgent)
+            TextField("", text: $storage.userAgent)
         }
     }
 }
 
 private struct SizeSection: View {
     
-    @EnvironmentObject var globalState: GlobalState
+    @EnvironmentObject var storage: StorageService
     
     var body: some View {
         FormField(title: "Window Size") {
-            Picker(selection: $globalState.size) {
+            Picker(selection: $storage.size) {
                 Text("9:16 | 320 x 569").tag(Size.i9b16w320)
                 Text("9:16 | 370 x 658").tag(Size.i9b16w370)
                 Text("9:16 | 420 x 746").tag(Size.i9b16w420)

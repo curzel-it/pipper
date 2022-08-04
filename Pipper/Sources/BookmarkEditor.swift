@@ -12,7 +12,7 @@ import SwiftUI
 struct BookmarkEditor: View {
     
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var globalState: GlobalState
+    @EnvironmentObject var storage: StorageService
     
     @Binding var editing: Bool
     
@@ -55,16 +55,20 @@ struct BookmarkEditor: View {
             
             HStack {
                 Spacer()
-                Button("Close") { editing = false }
-                    .keyboardShortcut(.cancelAction)
-                Button("Save", action: save)
-                    .keyboardShortcut(.defaultAction)
+                Button("Close", action: close).keyboardShortcut(.cancelAction)
+                Button("Save", action: save).keyboardShortcut(.defaultAction)
             }
         }
         .frame(width: 300)
         .padding()
         .onReceive(Just(url)) { updateIconUrl(from: $0) }
         .onSubmit(save)
+    }
+    
+    private func close() {
+        withAnimation {
+            editing = false
+        }
     }
     
     private func updateIconUrl(from newUrl: String) {
@@ -78,11 +82,8 @@ struct BookmarkEditor: View {
     private func save() {
         let item = Bookmark(id: id, title: title, url: url, icon: icon)
         withAnimation {
-            globalState.bookmarks.removeAll { $0.id == id }
-            globalState.bookmarks.append(item)
-            
-            editing = false
-            
+            storage.add(bookmark: item)
+            editing = false            
             appState.userMessage = UserMessage(
                 text: "'\(title)' added to your bookmarks",
                 duracy: .short,

@@ -1,5 +1,5 @@
 //
-//  GlobalState.swift
+//  StorageService.swift
 //  Pipper
 //
 //  Created by Federico Curzel on 28/07/22.
@@ -8,17 +8,11 @@
 import Combine
 import SwiftUI
 
-class GlobalState: ObservableObject {
+class StorageService: ObservableObject {
     
-    static let shared = GlobalState()
-        
-    let runtimeEvents = CurrentValueSubject<RuntimeEvent, Never>(.loading)
+    static let shared = StorageService()
     
-    @Published var bookmarks: [Bookmark] = [] {
-        didSet {
-            saveBookmarks()
-        }
-    }
+    @Published private(set) var bookmarks: [Bookmark] = []
     
     @Published var searchEngineBaseUrl: String = "" {
         didSet {
@@ -51,23 +45,30 @@ class GlobalState: ObservableObject {
         size = CGSize(width: storedWidth, height: storedHeight)
         loadBookmarks()
     }
+}
+
+extension StorageService {
     
-    func loadBookmarks() {
+    func add(bookmark: Bookmark) {
+        bookmarks = bookmarks.filter { $0.id != bookmark.id } + [bookmark]
+        saveBookmarks()
+    }
+    
+    func remove(bookmark: Bookmark) {
+        bookmarks = bookmarks.filter { $0.id != bookmark.id }
+        saveBookmarks()
+    }
+    
+    fileprivate func loadBookmarks() {
         if let data = storedBookmarks,
             let value = try? JSONDecoder().decode([Bookmark].self, from: data) {
             self.bookmarks = value
         }
     }
     
-    func saveBookmarks() {
+    fileprivate func saveBookmarks() {
         if let data = try? JSONEncoder().encode(bookmarks) {
             self.storedBookmarks = data
         }
     }
-}
-
-enum RuntimeEvent {
-    case loading
-    case launching
-    case closing
 }

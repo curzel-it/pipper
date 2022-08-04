@@ -12,7 +12,7 @@ import SwiftUI
 struct Search: View {
     
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var globalState: GlobalState
+    @EnvironmentObject var storage: StorageService
         
     @State var text: String = ""
     
@@ -26,7 +26,6 @@ struct Search: View {
                 .onSubmit(searchOrVisit)
                 .focused($focused)
                 .onAppear { focused = true }
-                .padding(.trailing)
                         
             SearchCurrentText(action: searchOrVisit)
             CloseSearchBar()
@@ -56,7 +55,7 @@ struct Search: View {
 private struct SearchCurrentText: View {
         
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var globalState: GlobalState
+    @EnvironmentObject var storage: StorageService
     
     let action: () -> Void
     
@@ -72,7 +71,7 @@ private struct SearchCurrentText: View {
 private struct CloseSearchBar: View {
         
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var globalState: GlobalState
+    @EnvironmentObject var storage: StorageService
     
     var body: some View {
         Button(action: close) {
@@ -92,7 +91,7 @@ private struct CloseSearchBar: View {
 private struct VisitSearchEngineHome: View {
         
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var globalState: GlobalState
+    @EnvironmentObject var storage: StorageService
     
     var body: some View {
         Button(action: visitSearchEngineHome) {
@@ -106,7 +105,7 @@ private struct VisitSearchEngineHome: View {
         withAnimation {
             appState.showSearch = false
             appState.showHome = false
-            appState.navigationRequest = .urlString(urlString: globalState.searchEngineBaseUrl)
+            appState.navigationRequest = .urlString(urlString: storage.searchEngineBaseUrl)
         }
     }
 }

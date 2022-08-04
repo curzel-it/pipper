@@ -12,7 +12,7 @@ import SwiftUI
 struct BookmarksGrid: View {
     
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var globalState: GlobalState
+    @EnvironmentObject var storage: StorageService
     
     @State var showingEditor: Bool = false
     
@@ -32,7 +32,7 @@ struct BookmarksGrid: View {
                 alignment: .leading,
                 spacing: 20
             ) {
-                ForEach(globalState.bookmarks) { item in
+                ForEach(storage.bookmarks) { item in
                     BookmarkItem(bookmark: item)
                 }
             }
@@ -46,7 +46,7 @@ struct BookmarksGrid: View {
 private struct BookmarkItem: View {
     
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var globalState: GlobalState
+    @EnvironmentObject var storage: StorageService
     
     @State var showingEditor = false
     
@@ -90,7 +90,7 @@ private struct BookmarkItem: View {
     
     func delete() {
         withAnimation {
-            globalState.bookmarks.removeAll { $0.id == bookmark.id }
+            storage.remove(bookmark: bookmark)
         }
     }
 }
