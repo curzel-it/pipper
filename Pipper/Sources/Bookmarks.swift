@@ -12,6 +12,7 @@ import SwiftUI
 struct BookmarksGrid: View {
     
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var globalState: GlobalState
     
     @State var showingEditor: Bool = false
     
@@ -20,17 +21,18 @@ struct BookmarksGrid: View {
             HStack {
                 Text("Bookmarks")
                     .font(.title.bold())
-                Spacer()
                 Button { showingEditor = true } label: {
                     Image(systemName: "plus")
                 }
+                .onHover(hint: "Create a new bookmark")
+                Spacer()
             }
             LazyVGrid(
                 columns: [.init(.adaptive(minimum: 80, maximum: 150), spacing: 20)],
                 alignment: .leading,
                 spacing: 20
             ) {
-                ForEach(appState.bookmarks) { item in
+                ForEach(globalState.bookmarks) { item in
                     BookmarkItem(bookmark: item)
                 }
             }
@@ -44,6 +46,7 @@ struct BookmarksGrid: View {
 private struct BookmarkItem: View {
     
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var globalState: GlobalState
     
     @State var showingEditor = false
     
@@ -87,7 +90,7 @@ private struct BookmarkItem: View {
     
     func delete() {
         withAnimation {
-            appState.bookmarks.removeAll { $0.id == bookmark.id }
+            globalState.bookmarks.removeAll { $0.id == bookmark.id }
         }
     }
 }

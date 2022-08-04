@@ -9,15 +9,17 @@ import Combine
 import SwiftUI
 
 class WindowManager: NSObject, NSWindowDelegate {
-        
-    let appState = AppState.global
+    
+    private let appState: AppState
+    private let globalState: GlobalState = .shared
     
     private var sizeSink: AnyCancellable?
     private var hoverSink: AnyCancellable?
     
-    override init() {
+    init(appState: AppState) {
+        self.appState = appState
         super.init()
-        appState.runtimeEvents.send(.launching)
+        globalState.runtimeEvents.send(.launching)
     }
     
     func setup(window: NSWindow) {
@@ -30,19 +32,19 @@ class WindowManager: NSObject, NSWindowDelegate {
         hoverSink = appState.$isHovering.sink { shouldHover in
             window.level = shouldHover ? .mainMenu : .normal
         }
-        sizeSink = appState.$size.sink { size in
+        sizeSink = globalState.$size.sink { size in
             window.setContentSize(size)
         }
     }
     
     func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
-        if appState.size != frameSize {
-            appState.size = frameSize
+        if globalState.size != frameSize {
+            globalState.size = frameSize
         }
         return frameSize
     }
     
     func windowWillClose(_ notification: Notification) {
-        appState.runtimeEvents.send(.closing)
+        globalState.runtimeEvents.send(.closing)
     }
 }

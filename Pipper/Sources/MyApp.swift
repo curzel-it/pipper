@@ -11,12 +11,12 @@ import SwiftUI
 @main
 struct PipperApp: App {
     
-    @StateObject var appState = AppState.global
+    @StateObject var globalState = GlobalState.shared
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(appState)
+                .environmentObject(globalState)
         }
         .windowStyle(.hiddenTitleBar)
     }

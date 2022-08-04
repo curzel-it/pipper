@@ -5,20 +5,23 @@
 //  Created by Federico Curzel on 31/07/22.
 //
 
+import Combine
 import Schwifty
 import SwiftUI
 
 struct BookmarkEditor: View {
     
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var globalState: GlobalState
     
     @Binding var editing: Bool
-    let viewTitle: String
     
-    let id: String
     @State var title: String
     @State var icon: String
     @State var url: String
+    
+    let viewTitle: String
+    let id: String
     
     init(editing: Binding<Bool>, original: Bookmark?) {
         self._editing = editing
@@ -60,14 +63,23 @@ struct BookmarkEditor: View {
         }
         .frame(width: 300)
         .padding()
+        .onReceive(Just(url)) { updateIconUrl(from: $0) }
         .onSubmit(save)
     }
     
+    private func updateIconUrl(from newUrl: String) {
+        let tokens = icon.components(separatedBy: "/favicon.ico")
+        guard tokens.count >= 1 else { return }
+        guard tokens[0] == "" || url.contains(tokens[0]) else { return }
+        icon = "\(newUrl)/favicon.ico"
+            .replacingOccurrences(of: "//favicon.ico", with: "/favicon.ico")
+    }
+     
     private func save() {
         let item = Bookmark(id: id, title: title, url: url, icon: icon)
         withAnimation {
-            appState.bookmarks.removeAll { $0.id == id }
-            appState.bookmarks.append(item)
+            globalState.bookmarks.removeAll { $0.id == id }
+            globalState.bookmarks.append(item)
             
             editing = false
             

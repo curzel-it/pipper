@@ -9,8 +9,8 @@ import Schwifty
 import SwiftUI
 
 struct ContentView: View {
-    
-    @EnvironmentObject var appState: AppState
+        
+    @StateObject var appState = AppState()
     
     var body: some View {
         VStack(spacing: 0) {
@@ -25,9 +25,13 @@ struct ContentView: View {
             }
             Toolbar()
         }
+        .sheet(isPresented: $appState.showSettings) {
+            SettingsView()
+        }
         .onWindow {
             appState.windowManager.setup(window: $0)
         }
+        .environmentObject(appState)
     }
 }
 
@@ -50,7 +54,9 @@ struct UserMessages: View {
                     if let message = message {
                         DispatchQueue.main.asyncAfter(deadline: .now() + message.duracy.rawValue) {
                             if appState.userMessage == message {
-                                appState.userMessage = nil
+                                withAnimation {
+                                    appState.userMessage = nil
+                                }
                             }
                         }
                     }

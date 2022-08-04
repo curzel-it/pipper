@@ -14,6 +14,7 @@ enum NavigationRequest {
     case html(text: String, baseURL: URL?)
     case urlString(urlString: String)
     case url(url: URL)
+    case search(input: String)
 }
 
 // MARK: - User Agents

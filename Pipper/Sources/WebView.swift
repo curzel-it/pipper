@@ -14,7 +14,7 @@ struct WebView: NSViewRepresentable {
     @EnvironmentObject var appState: AppState
         
     func makeNSView(context: Context) -> some NSView {
-        return MyWebView()
+        return MyWebView(appState: appState)
     }
     
     func updateNSView(_ nsView: NSViewType, context: Context) {
@@ -24,12 +24,14 @@ struct WebView: NSViewRepresentable {
 
 private class MyWebView: WKWebView {
     
-    let appState = AppState.global
+    let appState: AppState
+    let globalState: GlobalState = .shared
     
     private var userAgentSink: AnyCancellable!
     private var requestsSink: AnyCancellable!
     
-    init() {
+    init(appState: AppState) {
+        self.appState = appState
         super.init(frame: .zero, configuration: WKWebViewConfiguration())
         appState.webViewDelegate.setup(webView: self)
         loadUserAgent()
@@ -41,7 +43,7 @@ private class MyWebView: WKWebView {
     }
     
     private func loadUserAgent() {
-        userAgentSink = appState.$userAgent.sink { userAgent in
+        userAgentSink = globalState.$userAgent.sink { userAgent in
             self.customUserAgent = userAgent
             self.reload()
         }
@@ -55,19 +57,33 @@ private class MyWebView: WKWebView {
     
     func load(_ request: NavigationRequest) {
         switch request {
-            
         case .reload: reload()
-            
-        case .html(let text, let url):
-            loadHTMLString(text, baseURL: url)
-            
-        case .url(let url):
+        case .html(let text, let url): loadHTMLString(text, baseURL: url)
+        case .url(let url): load(URLRequest(url: url))
+        case .urlString(let urlString): load(urlString)
+        case .search(let userInput): search(userInput)
+        }
+    }
+    
+    private func load(_ urlString: String) {
+        if let url = URL(string: urlString) {
+            load(.url(url: url))
+        }
+    }
+    
+    private func search(_ userInput: String) {
+        let url: URL?
+        let text = userInput.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if let inputUrl = URL(string: text), inputUrl.scheme != nil {
+            url = inputUrl
+        } else {
+            let param = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            let urlString = "\(globalState.searchEngineBaseUrl)\(param ?? "")"
+            url = URL(string: urlString)
+        }
+        if let url = url {
             load(URLRequest(url: url))
-            
-        case .urlString(let urlString):
-            if let url = URL(string: urlString) {
-                load(.url(url: url))
-            }
         }
     }
 }

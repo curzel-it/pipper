@@ -36,24 +36,34 @@ extension UserMessage: Equatable {
 extension View {
     
     func onHover(hint: String) -> some View {
-        self.onHover { isHover in
+        modifier(HintOnHover(text: hint))
+    }
+}
+
+private struct HintOnHover: ViewModifier {
+    
+    @EnvironmentObject var appState: AppState
+    
+    let text: String
+    
+    func body(content: Content) -> some View {
+        content.onHover { isHover in
             if isHover {
                 withAnimation {
-                    AppState.global.userMessage = UserMessage(
-                        text: hint,
+                    appState.userMessage = UserMessage(
+                        text: text,
                         duracy: .long,
                         severity: .info
                     )
                 }
             } else {
-                guard let currentMesage = AppState.global.userMessage else { return }
-                if currentMesage.text == hint {
+                guard let currentMesage = appState.userMessage else { return }
+                if currentMesage.text == text {
                     withAnimation {
-                        AppState.global.userMessage = nil
+                        appState.userMessage = nil
                     }
                 }
             }
         }
     }
 }
-

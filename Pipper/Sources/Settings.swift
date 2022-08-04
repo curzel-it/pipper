@@ -8,61 +8,77 @@
 import Schwifty
 import SwiftUI
 
-struct Settings: View {
+struct SettingsView: View {
     
     var body: some View {
         VStack {
             SearchEngineSection()
             UserAgentSection()
             SizeSection()
-            Spacer()
+            Footer().padding(.top)
         }
         .padding()
     }
 }
 
-private struct SearchEngineSection: View {
+private struct Footer: View {
     
     @EnvironmentObject var appState: AppState
     
     var body: some View {
+        Button("Done") {
+            withAnimation {
+                appState.showSettings = false
+            }
+        }
+        .positioned(.trailing)
+        .keyboardShortcut(.cancelAction)
+        // .keyboardShortcut(.init(.))
+    }
+}
+
+private struct SearchEngineSection: View {
+    
+    @EnvironmentObject var globalState: GlobalState
+    
+    var body: some View {
         FormField(title: "Search Engine") {
-            Picker(selection: $appState.searchEngineBaseUrl) {
+            Picker(selection: $globalState.searchEngineBaseUrl) {
                 Text("DuckDuckGo").tag(SearchEngine.duckDuckGo)
                 Text("Google").tag(SearchEngine.google)
             } label: { EmptyView() }
         }
         FormField(title: "Search Engine Base Url") {
-            TextField("https://...?q=", text: $appState.searchEngineBaseUrl)
+            TextField("https://...?q=", text: $globalState.searchEngineBaseUrl)
         }
     }
 }
 
 private struct UserAgentSection: View {
     
-    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var globalState: GlobalState
         
     var body: some View {
         FormField(title: "User Agent") {
-            Picker(selection: $appState.userAgent) {
+            Picker(selection: $globalState.userAgent) {
                 Text("iPhone / Safari").tag(UserAgent.iPhone)
                 Text("iPad / Safari").tag(UserAgent.iPad)
                 Text("Desktop / Safari").tag(UserAgent.macBook)
             } label: { EmptyView() }
         }
         FormField(title: "Custom User Agent") {
-            TextField("", text: $appState.userAgent)
+            TextField("", text: $globalState.userAgent)
         }
     }
 }
 
 private struct SizeSection: View {
     
-    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var globalState: GlobalState
     
     var body: some View {
         FormField(title: "Window Size") {
-            Picker(selection: $appState.size) {
+            Picker(selection: $globalState.size) {
                 Text("9:16 | 320 x 569").tag(Size.i9b16w320)
                 Text("9:16 | 370 x 658").tag(Size.i9b16w370)
                 Text("9:16 | 420 x 746").tag(Size.i9b16w420)
@@ -79,12 +95,13 @@ private struct SizeSection: View {
         }
     }
 }
-
-extension Settings {
+/*
+extension SettingsView {
     
     static func showWindow() {
         let view = NSHostingView(
-            rootView: Settings().environmentObject(AppState.global)
+            rootView: SettingsView()
+                .environmentObject(AppState.global)
         )
         let window = NSWindow(
             contentRect: CGRect(x: 0, y: 0, width: 600, height: 400),
@@ -98,3 +115,4 @@ extension Settings {
         window.show()
     }
 }
+*/

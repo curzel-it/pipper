@@ -126,9 +126,8 @@ private struct SearchFromClipboardTool: View {
     
     var body: some View {
         Tool(icon: "doc.on.clipboard") {
-            let vm = SearchViewModel()
-            vm.text = NSPasteboard.general.string(forType: .string) ?? ""
-            vm.searchOrVisit()
+            let terms = NSPasteboard.general.string(forType: .string) ?? ""
+            appState.navigationRequest = .search(input: terms)
         }
         .keyboardShortcut(.init("V"), modifiers: [.command, .shift])
         .onHover(hint: "Cmd + Shift + V\nSearch text from clipboard")
@@ -154,7 +153,7 @@ private struct SettingsTool: View {
         
     var body: some View {
         Tool(icon: "gearshape") {
-            Settings.showWindow()
+            appState.showSettings = true
         }
         .onHover(hint: "Open settings window")
     }
