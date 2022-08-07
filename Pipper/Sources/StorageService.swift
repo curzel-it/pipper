@@ -59,6 +59,15 @@ extension StorageService {
         saveBookmarks()
     }
     
+    func remove(bookmark: URL) {
+        bookmarks = bookmarks.filter { $0.url != bookmark.absoluteString }
+        saveBookmarks()
+    }
+    
+    func isBookmarked(_ url: URL) -> Bool {
+        bookmarks.contains { $0.url == url.absoluteString }
+    }
+    
     fileprivate func loadBookmarks() {
         if let data = storedBookmarks,
             let value = try? JSONDecoder().decode([Bookmark].self, from: data) {

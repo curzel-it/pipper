@@ -47,4 +47,12 @@ class WindowManager: NSObject, NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
         appState.runtimeEvents.send(.closing)
     }
+    
+    func windowDidBecomeKey(_ notification: Notification) {
+        appState.showAdditionalInfo = true
+    }
+    
+    func windowDidResignKey(_ notification: Notification) {
+        appState.showAdditionalInfo = false
+    }
 }

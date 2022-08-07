@@ -12,10 +12,16 @@ class AppState: ObservableObject {
     
     @Published var isHovering = true
     @Published var userMessage: UserMessage?
+    @Published var showAdditionalInfo = true
     @Published var showHome = true
     @Published var showSearch = false
     @Published var showSettings = false
-    @Published var navigationRequest: NavigationRequest = .urlString(urlString: "about:blank")
+    @Published var vistedUrlsStack: [URL] = []
+    @Published var isLoading = false
+    
+    @Published private(set) var navigationRequest: NavigationRequest = .urlString(
+        urlString: "about:blank"
+    )
     
     let runtimeEvents = CurrentValueSubject<RuntimeEvent, Never>(.loading)
     
@@ -26,6 +32,13 @@ class AppState: ObservableObject {
     lazy var windowManager: WindowManager = {
         WindowManager(appState: self)
     }()
+
+    func load(_ request: NavigationRequest) {
+        self.showHome = false
+        self.showSettings = false
+        self.showSearch = false
+        self.navigationRequest = request
+    }
 }
 
 enum RuntimeEvent {

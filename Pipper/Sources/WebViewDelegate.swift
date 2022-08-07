@@ -10,7 +10,7 @@ import Foundation
 import WebKit
 
 class WebViewDelegate: NSObject, WKNavigationDelegate {
-        
+    
     private var eventsSink: AnyCancellable!
     
     private let appState: AppState
@@ -23,7 +23,7 @@ class WebViewDelegate: NSObject, WKNavigationDelegate {
         super.init()
         setKillWebViewWhenWindowCloses()
     }
-
+    
     private func setKillWebViewWhenWindowCloses() {
         // Video playing in the WKWebView continue to play after the window
         // gets closed, this does the trick.
@@ -45,13 +45,18 @@ class WebViewDelegate: NSObject, WKNavigationDelegate {
         webView.navigationDelegate = self
     }
     
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        appState.isLoading = false
+    }
+    
     func webView(
         _ webView: WKWebView,
         decidePolicyFor navigationAction: WKNavigationAction
     ) async -> WKNavigationActionPolicy {
-        let navigationUrl = navigationAction.request.url?.absoluteString.lowercased()
+        guard let navigationUrl = navigationAction.request.url else { return .allow }
+        let urlString = navigationUrl.absoluteString.lowercased()
         
-        switch navigationUrl {
+        switch urlString {
         case "project_github":
             let url = URL(string: "https://github.com/curzel-it/pipper")!
             NSWorkspace.shared.open(url)
@@ -61,8 +66,10 @@ class WebViewDelegate: NSObject, WKNavigationDelegate {
             let url = URL(string: "https://github.com/curzel-it")!
             NSWorkspace.shared.open(url)
             return .cancel
-                        
-        default: return .allow
+            
+        default:
+            trackPageLoad(url: navigationUrl)
+            return .allow
         }
     }
     
@@ -71,6 +78,14 @@ class WebViewDelegate: NSObject, WKNavigationDelegate {
         decidePolicyFor navigationResponse: WKNavigationResponse
     ) async -> WKNavigationResponsePolicy {
         .allow
+    }
+    
+    private func trackPageLoad(url: URL) {
+        guard url.absoluteString != "about:blank" else { return }
+        Task { @MainActor in
+            appState.vistedUrlsStack.append(url)
+            appState.isLoading = true
+        }
     }
 }
 

@@ -18,6 +18,5 @@ struct PipperApp: App {
             ContentView()
                 .environmentObject(storage)
         }
-        .windowStyle(.hiddenTitleBar)
     }
 }

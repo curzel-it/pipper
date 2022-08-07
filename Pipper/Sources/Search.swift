@@ -9,7 +9,7 @@ import Combine
 import Foundation
 import SwiftUI
 
-struct Search: View {
+struct SearchBar: View {
     
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var storage: StorageService
@@ -26,10 +26,6 @@ struct Search: View {
                 .onSubmit(searchOrVisit)
                 .focused($focused)
                 .onAppear { focused = true }
-                        
-            SearchCurrentText(action: searchOrVisit)
-            CloseSearchBar()
-            VisitSearchEngineHome()
         }
         .padding(.trailing)
         .background(Color.secondaryBackground)
@@ -37,75 +33,18 @@ struct Search: View {
         .shadow(radius: 16)
         .padding(.horizontal, 40)
         .onSubmit(searchOrVisit)
+        .onExitCommand(perform: close)
     }
     
     private func searchOrVisit() {
         appState.showHome = false
-        appState.navigationRequest = .search(input: text)
+        appState.load(.search(input: text))
         close()
     }
     
     private func close() {
         withAnimation {
             appState.showSearch = false
-        }
-    }
-}
-
-private struct SearchCurrentText: View {
-        
-    @EnvironmentObject var appState: AppState
-    @EnvironmentObject var storage: StorageService
-    
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            Image(systemName: "magnifyingglass")
-        }
-        .keyboardShortcut(.return)
-        .onHover(hint: "RETURN 􀅇\nSearches your input")
-    }
-}
-
-private struct CloseSearchBar: View {
-        
-    @EnvironmentObject var appState: AppState
-    @EnvironmentObject var storage: StorageService
-    
-    var body: some View {
-        Button(action: close) {
-            Image(systemName: "xmark")
-        }
-        .keyboardShortcut(.cancelAction)
-        .onHover(hint: "ESC 􀆧\nCloses the search bar")
-    }
-    
-    func close() {
-        withAnimation {
-            appState.showSearch = false
-        }
-    }
-}
-
-private struct VisitSearchEngineHome: View {
-        
-    @EnvironmentObject var appState: AppState
-    @EnvironmentObject var storage: StorageService
-    
-    var body: some View {
-        Button(action: visitSearchEngineHome) {
-            Image(systemName: "arrow.up.left.and.arrow.down.right")
-        }
-        .keyboardShortcut(.init("E"), modifiers: [.command, .shift])
-        .onHover(hint: "CMD + Shift + E\nOpen Search Engine homepage")
-    }
-    
-    func visitSearchEngineHome() {
-        withAnimation {
-            appState.showSearch = false
-            appState.showHome = false
-            appState.navigationRequest = .urlString(urlString: storage.searchEngineBaseUrl)
         }
     }
 }

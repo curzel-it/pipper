@@ -17,13 +17,14 @@ struct ContentView: View {
             ZStack {
                 Homepage()
                     .opacity(appState.showHome ? 1 : 0)
+                // Browser()
                 WebView()
                     .opacity(appState.showHome ? 0 : 1)
                 
-                if appState.showSearch { Search() }
+                if appState.showSearch { SearchBar() }
                 UserMessages()
             }
-            Toolbar()
+            if appState.showAdditionalInfo { Toolbar() }
         }
         .sheet(isPresented: $appState.showSettings) {
             SettingsView()

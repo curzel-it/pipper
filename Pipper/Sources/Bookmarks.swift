@@ -78,7 +78,7 @@ private struct BookmarkItem: View {
     func visit() {
         withAnimation {
             appState.showHome = false
-            appState.navigationRequest = .urlString(urlString: bookmark.url)
+            appState.load(.urlString(urlString: bookmark.url))
         }
     }
     

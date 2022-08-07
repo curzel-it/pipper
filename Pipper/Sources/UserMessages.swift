@@ -75,7 +75,6 @@ extension UserMessage.Severity {
     }
 }
 
-
 extension View {
     
     func onHover(hint: String) -> some View {

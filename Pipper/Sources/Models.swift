@@ -77,3 +77,15 @@ struct Bookmark: Codable, Identifiable, Equatable {
     let url: String
     let icon: String
 }
+
+extension URL {
+    
+    func asBookmark(title: String) -> Bookmark {
+        Bookmark(
+            id: UUID().uuidString,
+            title: title,
+            url: absoluteString,
+            icon: favicon?.absoluteString ?? absoluteString
+        )
+    }
+}
