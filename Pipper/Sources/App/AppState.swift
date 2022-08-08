@@ -12,6 +12,7 @@ class AppState: ObservableObject {
     
     @Published var isHovering = true
     @Published var userMessage: UserMessage?
+    @Published var size: CGSize = StorageService.shared.size
     @Published var showAdditionalInfo = true
     @Published var showHome = true
     @Published var showSearch = false

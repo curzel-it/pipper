@@ -32,20 +32,21 @@ class WindowManager: NSObject, NSWindowDelegate {
         hoverSink = appState.$isHovering.sink { shouldHover in
             window.level = shouldHover ? .mainMenu : .normal
         }
-        sizeSink = storage.$size.sink { size in
+        sizeSink = appState.$size.sink { size in
             window.setContentSize(size)
         }
     }
     
     func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
-        if storage.size != frameSize {
-            storage.size = frameSize
+        if appState.size != frameSize {
+            appState.size = frameSize
         }
         return frameSize
     }
     
     func windowWillClose(_ notification: Notification) {
         appState.runtimeEvents.send(.closing)
+        storage.size = appState.size
     }
     
     func windowDidBecomeKey(_ notification: Notification) {
