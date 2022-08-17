@@ -32,7 +32,7 @@ class StorageService: ObservableObject {
             storedHeight = size.height
         }
     }
-        
+    
     @AppStorage("bookmarks") private var storedBookmarks: Data?
     @AppStorage("searchEngineBaseUrl") private var storedSearchEngineBaseUrl: String = SearchEngine.duckDuckGo
     @AppStorage("width") private var storedWidth: Double = Size.i9b24w320.width

@@ -28,6 +28,7 @@
 		1E6FD79928A0F38800021336 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FD79828A0F38800021336 /* UserAgent.swift */; };
 		1E6FD79B28A0F39000021336 /* SearchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FD79A28A0F39000021336 /* SearchEngine.swift */; };
 		1E6FD79D28A0F39900021336 /* WindowSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FD79C28A0F39900021336 /* WindowSize.swift */; };
+		1E78955828AD33D0000F7077 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 1E78955728AD33D0000F7077 /* LaunchAtLogin */; };
 		1E93EEBD2895BE84006CF96A /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93EEBC2895BE84006CF96A /* Homepage.swift */; };
 		1E93EEC02895C8DD006CF96A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1E93EEBF2895C8DD006CF96A /* Kingfisher */; };
 		1E93EEC22895D1E2006CF96A /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93EEC12895D1E2006CF96A /* UserMessages.swift */; };
@@ -100,6 +101,7 @@
 			files = (
 				1E93EEC02895C8DD006CF96A /* Kingfisher in Frameworks */,
 				1E3AFC982891C03A00C6A465 /* OnWindow in Frameworks */,
+				1E78955828AD33D0000F7077 /* LaunchAtLogin in Frameworks */,
 				1E34738728928C7600E8C840 /* Schwifty in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +277,7 @@
 				1E628CFA28916BED00570FCC /* Sources */,
 				1E628CFB28916BED00570FCC /* Frameworks */,
 				1E628CFC28916BED00570FCC /* Resources */,
+				1E78955928AD34A4000F7077 /* Launch at Login Helper */,
 			);
 			buildRules = (
 			);
@@ -285,6 +288,7 @@
 				1E3AFC972891C03A00C6A465 /* OnWindow */,
 				1E34738628928C7600E8C840 /* Schwifty */,
 				1E93EEBF2895C8DD006CF96A /* Kingfisher */,
+				1E78955728AD33D0000F7077 /* LaunchAtLogin */,
 			);
 			productName = Pipper;
 			productReference = 1E628CFE28916BED00570FCC /* Pipper.app */;
@@ -362,6 +366,7 @@
 				1E3AFC962891C03A00C6A465 /* XCRemoteSwiftPackageReference "OnWindow" */,
 				1E34738528928C7600E8C840 /* XCRemoteSwiftPackageReference "schwifty" */,
 				1E93EEBE2895C8DD006CF96A /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				1E78955628AD33D0000F7077 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
 			);
 			productRefGroup = 1E628CFF28916BED00570FCC /* Products */;
 			projectDirPath = "";
@@ -419,6 +424,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint lint \"$SRCROOT\" --config \"$SRCROOT\"/.swiftlint.yml\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		1E78955928AD34A4000F7077 /* Launch at Login Helper */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Launch at Login Helper";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -788,6 +811,14 @@
 				kind = branch;
 			};
 		};
+		1E78955628AD33D0000F7077 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		1E93EEBE2895C8DD006CF96A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -808,6 +839,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1E3AFC962891C03A00C6A465 /* XCRemoteSwiftPackageReference "OnWindow" */;
 			productName = OnWindow;
+		};
+		1E78955728AD33D0000F7077 /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E78955628AD33D0000F7077 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
+			productName = LaunchAtLogin;
 		};
 		1E93EEBF2895C8DD006CF96A /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

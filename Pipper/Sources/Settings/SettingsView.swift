@@ -5,6 +5,7 @@
 //  Created by Federico Curzel on 28/07/22.
 //
 
+import LaunchAtLogin
 import Schwifty
 import SwiftUI
 
@@ -15,6 +16,7 @@ struct SettingsView: View {
             SearchEngineSection()
             UserAgentSection()
             SizeSection()
+            LaunchAtLoginSection()
             Footer().padding(.top)
         }
         .padding()
@@ -67,6 +69,27 @@ private struct UserAgentSection: View {
         }
         FormField(title: "Custom User Agent") {
             TextField("", text: $storage.userAgent)
+        }
+    }
+}
+
+private struct LaunchAtLoginSection: View {
+    
+    @EnvironmentObject var appState: AppState
+    
+    var launchAtLogin: Binding<Bool> = Binding {
+        LaunchAtLogin.isEnabled
+    } set: { newValue in
+        LaunchAtLogin.isEnabled = newValue
+    }
+    
+    var body: some View {
+        FormField(title: "Launch at login") {
+            HStack {
+                Toggle(isOn: launchAtLogin, label: { EmptyView() })
+                    .toggleStyle(.switch)
+                Spacer()
+            }
         }
     }
 }
