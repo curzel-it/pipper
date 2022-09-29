@@ -35,9 +35,9 @@ class StorageService: ObservableObject {
     
     @AppStorage("bookmarks") private var storedBookmarks: Data?
     @AppStorage("searchEngineBaseUrl") private var storedSearchEngineBaseUrl: String = SearchEngine.duckDuckGo
-    @AppStorage("width") private var storedWidth: Double = Size.i9b24w320.width
-    @AppStorage("height") private var storedHeight: Double = Size.i9b24w320.height
-    @AppStorage("userAgent") private var storedUserAgent: String = UserAgent.iPad
+    @AppStorage("width") private var storedWidth: Double = Size.i1b1w520.width
+    @AppStorage("height") private var storedHeight: Double = Size.i1b1w520.height
+    @AppStorage("userAgent") private var storedUserAgent: String = UserAgent.macBook
     
     private init() {
         userAgent = storedUserAgent

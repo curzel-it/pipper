@@ -15,7 +15,7 @@ struct Toolbar: View {
         VStack(spacing: 0) {
             Rectangle().fill(Color.tertiaryLabel, style: .init()).frame(height: 1)
             HStack {
-                WebBackTool()
+                // WebBackTool()
                 HomeTool()
                 WebTool()
                 SearchTool()
