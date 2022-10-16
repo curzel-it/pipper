@@ -6,6 +6,10 @@ I sometimes like to have a window stay always visible on screen, so I did this.
 
 If you have an ultrawide monitor I am sure you can understand!
 
+## Use Cases
+
+Thanks to James Steele from the MOTUnation [Forum](https://www.motunation.com/forum/index.php) and [YouTube Channel](https://www.youtube.com/user/MOTUNATION) for showing how Pipper can be used with the MOTU AVB Mixer [in this video](https://www.youtube.com/watch?v=uZrAAGjKsAI).
+
 ![Demo](demo.gif)
 
 ## Features
