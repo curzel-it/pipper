@@ -17,7 +17,6 @@ struct ContentView: View {
             ZStack {
                 Homepage()
                     .opacity(appState.showHome ? 1 : 0)
-                // Browser()
                 WebView()
                     .opacity(appState.showHome ? 0 : 1)
                 

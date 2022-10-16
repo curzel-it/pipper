@@ -12,7 +12,8 @@ import SwiftUI
 struct SettingsView: View {
     
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
+            HomepageSelection()
             SearchEngineSection()
             UserAgentSection()
             SizeSection()
@@ -24,7 +25,6 @@ struct SettingsView: View {
 }
 
 private struct Footer: View {
-    
     @EnvironmentObject var appState: AppState
     
     var body: some View {
@@ -38,43 +38,57 @@ private struct Footer: View {
     }
 }
 
-private struct SearchEngineSection: View {
-    
+private struct HomepageSelection: View {
     @EnvironmentObject var storage: StorageService
     
     var body: some View {
-        FormField(title: "Search Engine") {
-            Picker(selection: $storage.searchEngineBaseUrl) {
-                Text("DuckDuckGo").tag(SearchEngine.duckDuckGo)
-                Text("Google").tag(SearchEngine.google)
-            } label: { EmptyView() }
+        VStack {
+            FormField(title: "Homepage Url") {
+                TextField("", text: $storage.homepageUrl)
+            }
+            Text("(Leave blank to start on bookmarks page.)").textAlign(.trailing)
         }
-        FormField(title: "Search Engine Base Url") {
-            TextField("https://...?q=", text: $storage.searchEngineBaseUrl)
+    }
+}
+
+private struct SearchEngineSection: View {
+    @EnvironmentObject var storage: StorageService
+    
+    var body: some View {
+        VStack {
+            FormField(title: "Search Engine") {
+                Picker(selection: $storage.searchEngineBaseUrl) {
+                    Text("DuckDuckGo").tag(SearchEngine.duckDuckGo)
+                    Text("Google").tag(SearchEngine.google)
+                } label: { EmptyView() }
+            }
+            FormField(title: "Search Engine Base Url") {
+                TextField("https://...?q=", text: $storage.searchEngineBaseUrl)
+            }
         }
     }
 }
 
 private struct UserAgentSection: View {
-    
     @EnvironmentObject var storage: StorageService
         
     var body: some View {
-        FormField(title: "User Agent") {
-            Picker(selection: $storage.userAgent) {
-                Text("iPhone / Safari").tag(UserAgent.iPhone)
-                Text("iPad / Safari").tag(UserAgent.iPad)
-                Text("Desktop / Safari").tag(UserAgent.macBook)
-            } label: { EmptyView() }
-        }
-        FormField(title: "Custom User Agent") {
-            TextField("", text: $storage.userAgent)
+        VStack {
+            FormField(title: "User Agent") {
+                Picker(selection: $storage.userAgent) {
+                    Text("iPhone / Safari").tag(UserAgent.iPhone)
+                    Text("iPad / Safari").tag(UserAgent.iPad)
+                    Text("Desktop / Safari").tag(UserAgent.macBook)
+                } label: { EmptyView() }
+            }
+            FormField(title: "Custom User Agent") {
+                TextField("", text: $storage.userAgent)
+            }
         }
     }
 }
 
 private struct LaunchAtLoginSection: View {
-    
     @EnvironmentObject var appState: AppState
     
     var launchAtLogin: Binding<Bool> = Binding {
@@ -95,7 +109,6 @@ private struct LaunchAtLoginSection: View {
 }
 
 private struct SizeSection: View {
-    
     @EnvironmentObject var appState: AppState
     
     var body: some View {

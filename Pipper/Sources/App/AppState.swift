@@ -9,20 +9,17 @@ import Combine
 import SwiftUI
 
 class AppState: ObservableObject {
-    
     @Published var isHovering = true
     @Published var userMessage: UserMessage?
     @Published var size: CGSize = StorageService.shared.size
     @Published var showAdditionalInfo = true
-    @Published var showHome = true
+    @Published var showHome: Bool
     @Published var showSearch = false
     @Published var showSettings = false
     @Published var vistedUrlsStack: [URL] = []
     @Published var isLoading = false
     
-    @Published private(set) var navigationRequest: NavigationRequest = .urlString(
-        urlString: "about:blank"
-    )
+    @Published private(set) var navigationRequest: NavigationRequest
     
     let runtimeEvents = CurrentValueSubject<RuntimeEvent, Never>(.loading)
     
@@ -33,6 +30,16 @@ class AppState: ObservableObject {
     lazy var windowManager: WindowManager = {
         WindowManager(appState: self)
     }()
+    
+    init() {
+        if let homeUrl = URL(string: StorageService.shared.homepageUrl) {
+            navigationRequest = .url(url: homeUrl)
+            showHome = false
+        } else {
+            navigationRequest = .urlString(urlString: "about:blank")
+            showHome = true
+        }
+    }
 
     func load(_ request: NavigationRequest) {
         self.showHome = false
