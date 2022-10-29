@@ -10,7 +10,7 @@ If you have an ultrawide monitor I am sure you can understand!
 
 Thanks to James Steele from the MOTUnation [Forum](https://www.motunation.com/forum/index.php) and [YouTube Channel](https://www.youtube.com/user/MOTUNATION) for showing how Pipper can be used with the MOTU AVB Mixer [in this video](https://www.youtube.com/watch?v=uZrAAGjKsAI).
 
-![Demo](demo.gif)
+![Demo](Gallery/demo.gif)
 
 ## Features
 
@@ -21,10 +21,18 @@ Thanks to James Steele from the MOTUnation [Forum](https://www.motunation.com/fo
 * Configurable Search Engine
 * Floats over other windows (can be disabled)
 * Supports multiple windows
+* No tracking
+
+## Gallery
+
+![Bookmarks](Gallery/bookmarks.png)
+![Search](Gallery/search.png)
+![Settings](Gallery/settings.png)
+
 
 ## Install and Run
 
-Latest build is available in Releases, but if you want to build it:
+Latest build is available in Releases, to build from source:
 
 1. Clone the project
 1. Launch with Xcode

@@ -81,16 +81,14 @@ private struct ShareTool: View {
     @EnvironmentObject var appState: AppState
     
     var body: some View {
-        if !appState.showHome {
-            Tool(icon: "square.and.arrow.up") {
-                guard let url = appState.vistedUrlsStack.last else { return }
-                let data = url.absoluteString.data(using: .utf8)
-                NSPasteboard.general.setData(data, forType: .string)
-                appState.userMessage = .init(text: "Copied!", duracy: .short, severity: .info)
-            }
-            .keyboardShortcut(.init("C"), modifiers: [.command, .shift])
-            .onHover(hint: "Copy the current URL to clipboard")
+        Tool(icon: "square.and.arrow.up") {
+            guard let url = appState.vistedUrlsStack.last?.absoluteString else { return }
+            NSPasteboard.general.clearContents()
+            NSPasteboard.general.setString(url, forType: .string)
+            appState.userMessage = .init(text: "Copied!", duracy: .short, severity: .info)
         }
+        .keyboardShortcut(.init("C"), modifiers: [.command, .shift])
+        .onHover(hint: "Copy the current URL to clipboard")
     }
 }
 
