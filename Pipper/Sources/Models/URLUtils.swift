@@ -1,19 +1,10 @@
-//
-//  Favicon.swift
-//  Pipper
-//
-//  Created by Federico Curzel on 07/08/22.
-//
-
 import Foundation
 
 extension URL {
-    
     var favicon: URL? { Favicons.url(for: self) }
 }
 
 struct Favicons {
-    
     static func url(for link: URL, size: Int = .defaultSize) -> URL? {
         guard let host = link.host else { return nil }
         return url(domain: host, size: size)
@@ -26,6 +17,5 @@ struct Favicons {
 }
 
 private extension Int {
-    
     static let defaultSize: Int = 64
 }

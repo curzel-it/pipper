@@ -1,21 +1,10 @@
-//
-//  Search.swift
-//  Pipper
-//
-//  Created by Federico Curzel on 28/07/22.
-//
-
 import Combine
 import Foundation
 import SwiftUI
 
 struct SearchBar: View {
-    
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var storage: StorageService
-        
     @State var text: String = ""
-    
     @FocusState var focused: Bool
     
     var body: some View {

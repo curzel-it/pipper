@@ -1,10 +1,3 @@
-//
-//  NavigationRequest.swift
-//  Pipper
-//
-//  Created by Federico Curzel on 08/08/22.
-//
-
 import Foundation
 
 enum NavigationRequest {

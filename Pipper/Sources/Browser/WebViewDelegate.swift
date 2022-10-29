@@ -1,21 +1,10 @@
-//
-//  WebViewDelegate.swift
-//  Pipper
-//
-//  Created by Federico Curzel on 27/07/22.
-//
-
 import Combine
 import Foundation
 import WebKit
 
 class WebViewDelegate: NSObject, WKNavigationDelegate {
-    
     private var eventsSink: AnyCancellable!
-    
     private let appState: AppState
-    private let storage: StorageService = .shared
-    
     weak var webView: WKWebView?
     
     init(appState: AppState) {
@@ -38,7 +27,7 @@ class WebViewDelegate: NSObject, WKNavigationDelegate {
     
     func setup(webView: WKWebView) {
         self.webView = webView
-        webView.customUserAgent = storage.userAgent
+        webView.customUserAgent = appState.userAgent
         webView.allowsBackForwardNavigationGestures = true
         webView.allowsMagnification = true
         webView.allowsLinkPreview = false
@@ -90,7 +79,6 @@ class WebViewDelegate: NSObject, WKNavigationDelegate {
 }
 
 extension NSWorkspace {
-    
     func open(_ urlString: String) {
         if let url = URL(string: urlString) {
             open(url)

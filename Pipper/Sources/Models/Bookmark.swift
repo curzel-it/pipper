@@ -1,14 +1,6 @@
-//
-//  Bookmark.swift
-//  Pipper
-//
-//  Created by Federico Curzel on 08/08/22.
-//
-
 import Foundation
 
 struct Bookmark: Codable, Identifiable, Equatable {
-    
     let id: String
     let title: String
     let url: String
@@ -16,7 +8,6 @@ struct Bookmark: Codable, Identifiable, Equatable {
 }
 
 extension URL {
-    
     func asBookmark(title: String) -> Bookmark {
         Bookmark(
             id: UUID().uuidString,

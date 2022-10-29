@@ -1,26 +1,15 @@
-//
-//  Bookmarks.swift
-//  Pipper
-//
-//  Created by Federico Curzel on 30/07/22.
-//
-
 import Kingfisher
 import Schwifty
 import SwiftUI
 
 struct BookmarksGrid: View {
-    
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var storage: StorageService
-    
     @State var showingEditor: Bool = false
     
     var body: some View {
         VStack {
             HStack {
-                Text("Bookmarks")
-                    .font(.title.bold())
+                Text("Bookmarks").font(.title.bold())
                 Button { showingEditor = true } label: {
                     Image(systemName: "plus")
                 }
@@ -32,7 +21,7 @@ struct BookmarksGrid: View {
                 alignment: .leading,
                 spacing: 20
             ) {
-                ForEach(storage.bookmarks) { item in
+                ForEach(appState.bookmarks) { item in
                     BookmarkItem(bookmark: item)
                 }
             }
@@ -44,13 +33,16 @@ struct BookmarksGrid: View {
 }
 
 private struct BookmarkItem: View {
-    
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var storage: StorageService
-    
     @State var showingEditor = false
     
     let bookmark: Bookmark
+    
+    var shortUrl: String {
+        bookmark.url
+            .replacingOccurrences(of: "https://", with: "")
+            .replacingOccurrences(of: "http://", with: "")
+    }
     
     var body: some View {
         VStack {
@@ -73,6 +65,7 @@ private struct BookmarkItem: View {
         .sheet(isPresented: $showingEditor) {
             BookmarkEditor(editing: $showingEditor, original: bookmark)
         }
+        .onHover(hint: "Visit \(shortUrl)")
     }
     
     func visit() {
@@ -90,13 +83,12 @@ private struct BookmarkItem: View {
     
     func delete() {
         withAnimation {
-            storage.remove(bookmark: bookmark)
+            appState.remove(bookmark: bookmark)
         }
     }
 }
 
 struct MenuItem: View {
-    
     let title: String
     let icon: String
     let action: () -> Void

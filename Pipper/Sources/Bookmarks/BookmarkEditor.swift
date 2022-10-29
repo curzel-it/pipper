@@ -1,21 +1,10 @@
-//
-//  BookmarkEditor.swift
-//  Pipper
-//
-//  Created by Federico Curzel on 31/07/22.
-//
-
 import Combine
 import Schwifty
 import SwiftUI
 
 struct BookmarkEditor: View {
-    
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var storage: StorageService
-    
-    @Binding var editing: Bool
-    
+    @Binding var editing: Bool    
     @State var title: String
     @State var icon: String
     @State var url: String
@@ -82,7 +71,7 @@ struct BookmarkEditor: View {
     private func save() {
         let item = Bookmark(id: id, title: title, url: url, icon: icon)
         withAnimation {
-            storage.add(bookmark: item)
+            appState.add(bookmark: item)
             editing = false            
             appState.userMessage = UserMessage(
                 text: "'\(title)' added to your bookmarks",

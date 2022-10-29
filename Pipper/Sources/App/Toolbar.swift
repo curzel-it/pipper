@@ -1,72 +1,83 @@
-//
-//  Tools.swift
-//  Pipper
-//
-//  Created by Federico Curzel on 28/07/22.
-//
-
 import SwiftUI
 
-struct Toolbar: View {
-    
-    @EnvironmentObject var appState: AppState
-    
-    var body: some View {
-        VStack(spacing: 0) {
-            Rectangle().fill(Color.tertiaryLabel, style: .init()).frame(height: 1)
-            HStack {
-                // WebBackTool()
-                HomeTool()
-                WebTool()
-                SearchTool()
-                SearchFromClipboardTool()
-                CopyUrlTool()
-                ReloadTool()
-                SettingsTool()
-                HoverTool()
-            }
-            .padding(8)
+extension View {
+    func browsingToolbar() -> some View {
+        self.toolbar {
+            ToolbarItem { WebHomeToggle() }
+            ToolbarItem { SettingsTool() }
+            ToolbarItem { ReloadTool() }
+            ToolbarItem { ShareTool() }
+            ToolbarItem { SearchFromClipboardTool() }
+            ToolbarItem { SearchTool() }
         }
     }
 }
 
 private struct Tool: View {
-    
     let icon: String
     let action: () -> Void
     
     var body: some View {
-        Spacer()
         Button {
-            withAnimation {
-                action()
-            }
+            withAnimation { action() }
         } label: {
             Image(systemName: icon)
         }
     }
 }
 
-// MARK: - Default Tools
-
-private struct WebBackTool: View {
-    
+private struct WebHomeToggle: View {
     @EnvironmentObject var appState: AppState
     
     var body: some View {
-        if !appState.showHome, appState.vistedUrlsStack.count >= 2 {
-            Tool(icon: "arrow.left") {
-                _ = appState.vistedUrlsStack.popLast()
-                guard let next = appState.vistedUrlsStack.popLast() else { return }
-                appState.load(.url(url: next))
-            }
-            .onHover(hint: "Goes back to latest visited url")
+        Tool(icon: appState.showHome ? "network" : "house.fill") {
+            appState.showHome = !appState.showHome
+            appState.showSearch = false
+            appState.showSettings = false
         }
+        .keyboardShortcut(.init("B"), modifiers: [.command, .shift])
+        .onHover(hint: "Cmd + Shift + B\nSwitch between home and web")
     }
 }
 
-private struct CopyUrlTool: View {
+private struct SearchTool: View {
+    @EnvironmentObject var appState: AppState
     
+    var body: some View {
+        Tool(icon: "magnifyingglass") {
+            appState.showSearch = true
+            appState.showSettings = false
+        }
+        .keyboardShortcut(.init("F"), modifiers: [.command, .shift])
+        .onHover(hint: "Cmd + Shift + F\nOpen up the search bar")
+    }
+}
+
+private struct SettingsTool: View {
+    @EnvironmentObject var appState: AppState
+    
+    var body: some View {
+        Tool(icon: "gearshape") {
+            appState.showSearch = false
+            appState.showSettings = true
+        }
+        .onHover(hint: "Open up settings panel")
+    }
+}
+
+private struct ReloadTool: View {
+    @EnvironmentObject var appState: AppState
+    
+    var body: some View {
+        Tool(icon: "arrow.counterclockwise") {
+            appState.load(.reload)
+        }
+        .keyboardShortcut(.init("R"), modifiers: [.command])
+        .onHover(hint: "Cmd + R\nReload the page")
+    }
+}
+
+private struct ShareTool: View {
     @EnvironmentObject var appState: AppState
     
     var body: some View {
@@ -77,60 +88,13 @@ private struct CopyUrlTool: View {
                 NSPasteboard.general.setData(data, forType: .string)
                 appState.userMessage = .init(text: "Copied!", duracy: .short, severity: .info)
             }
+            .keyboardShortcut(.init("C"), modifiers: [.command, .shift])
             .onHover(hint: "Copy the current URL to clipboard")
         }
     }
 }
 
-private struct HoverTool: View {
-    
-    @EnvironmentObject var appState: AppState
-    
-    var body: some View {
-        Spacer()
-        Toggle(isOn: $appState.isHovering, label: { EmptyView() })
-            .toggleStyle(.switch)
-            .onHover(hint: "If on the window will stay above all other windows.")
-    }
-}
-
-private struct HomeTool: View {
-    
-    @EnvironmentObject var appState: AppState
-    
-    var body: some View {
-        if !appState.showHome {
-            Tool(icon: "house") { appState.showHome = true }
-                .onHover(hint: "Shows your bookmarks")
-        }
-    }
-}
-
-private struct WebTool: View {
-    
-    @EnvironmentObject var appState: AppState
-    
-    var body: some View {
-        if appState.showHome {
-            Tool(icon: "globe") { appState.showHome = false }
-                .onHover(hint: "Go back to the webview")
-        }
-    }
-}
-
-private struct SearchTool: View {
-    
-    @EnvironmentObject var appState: AppState
-    
-    var body: some View {
-        Tool(icon: "magnifyingglass") { appState.showSearch = true }
-            .keyboardShortcut(.init("F"), modifiers: [.command, .shift])
-            .onHover(hint: "Cmd + Shift + F\nOpen up the search bar")
-    }
-}
-
 private struct SearchFromClipboardTool: View {
-    
     @EnvironmentObject var appState: AppState
     
     var body: some View {
@@ -143,31 +107,3 @@ private struct SearchFromClipboardTool: View {
     }
 }
 
-private struct ReloadTool: View {
-    
-    @EnvironmentObject var appState: AppState
-    
-    var body: some View {
-        if !appState.showHome {
-            Tool(icon: "arrow.counterclockwise") {
-                appState.load(.reload)
-            }
-            .keyboardShortcut(.init("R"), modifiers: [.command])
-            .onHover(hint: "Cmd + R\nReload the page")
-        }
-    }
-}
-
-private struct SettingsTool: View {
-    
-    @EnvironmentObject var appState: AppState
-        
-    var body: some View {
-        if appState.showHome {
-            Tool(icon: "gearshape") {
-                appState.showSettings = true
-            }
-            .onHover(hint: "Open settings window")
-        }
-    }
-}

@@ -1,18 +1,10 @@
-//
-//  WebView.swift
-//  Pipper
-//
-//  Created by Federico Curzel on 27/07/22.
-//
-
 import Combine
 import SwiftUI
 import WebKit
 
 struct WebView: NSViewRepresentable {
-    
     @EnvironmentObject var appState: AppState
-        
+    
     func makeNSView(context: Context) -> some NSView {
         return MyWebView(appState: appState)
     }
@@ -23,9 +15,7 @@ struct WebView: NSViewRepresentable {
 }
 
 private class MyWebView: WKWebView {
-    
     let appState: AppState
-    let storage: StorageService = .shared
     
     private var userAgentSink: AnyCancellable!
     private var requestsSink: AnyCancellable!
@@ -34,22 +24,22 @@ private class MyWebView: WKWebView {
         self.appState = appState
         super.init(frame: .zero, configuration: WKWebViewConfiguration())
         appState.webViewDelegate.setup(webView: self)
-        loadUserAgent()
-        loadRequests()
+        bindUserAgent()
+        bindNavigationRequests()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func loadUserAgent() {
-        userAgentSink = storage.$userAgent.sink { userAgent in
+    private func bindUserAgent() {
+        userAgentSink = appState.$userAgent.sink { userAgent in
             self.customUserAgent = userAgent
             self.reload()
         }
     }
     
-    private func loadRequests() {
+    private func bindNavigationRequests() {
         requestsSink = appState.$navigationRequest.sink { request in
             self.load(request)
         }
@@ -79,7 +69,7 @@ private class MyWebView: WKWebView {
             url = inputUrl
         } else {
             let param = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-            let urlString = "\(storage.searchEngineBaseUrl)\(param ?? "")"
+            let urlString = "\(appState.searchEngineBaseUrl)\(param ?? "")"
             url = URL(string: urlString)
         }
         if let url = url {

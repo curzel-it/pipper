@@ -1,40 +1,6 @@
-//
-//  UserMessages.swift
-//  Pipper
-//
-//  Created by Federico Curzel on 30/07/22.
-//
-
 import SwiftUI
 
-struct UserMessage {
-    
-    let text: String
-    let duracy: Duracy
-    let severity: Severity
-    
-    enum Duracy: TimeInterval {
-        case short = 2
-        case long = 5
-    }
-    
-    enum Severity {
-        case error
-        case warning
-        case info
-        case success
-    }
-}
-
-extension UserMessage: Equatable {
-    
-    static func == (lhs: UserMessage, rhs: UserMessage) -> Bool {
-        lhs.text == rhs.text && lhs.severity == rhs.severity
-    }
-}
-
 struct UserMessages: View {
-    
     @EnvironmentObject var appState: AppState
     
     var body: some View {
@@ -48,23 +14,23 @@ struct UserMessages: View {
                 .shadow(radius: 16)
                 .positioned(.bottom)
                 .padding(.bottom, 50)
-                .onReceive(appState.$userMessage) { message in
-                    if let message = message {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + message.duracy.rawValue) {
-                            if appState.userMessage == message {
-                                withAnimation {
-                                    appState.userMessage = nil
-                                }
-                            }
-                        }
-                    }
+                .onReceive(appState.$userMessage, perform: handle)
+        }
+    }
+    
+    private func handle(message: UserMessage?) {
+        guard let message = message else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + message.duracy.rawValue) {
+            if appState.userMessage == message {
+                withAnimation {
+                    appState.userMessage = nil
                 }
+            }
         }
     }
 }
 
 extension UserMessage.Severity {
-    
     var color: Color {
         switch self {
         case .error: return .error
@@ -76,14 +42,12 @@ extension UserMessage.Severity {
 }
 
 extension View {
-    
     func onHover(hint: String) -> some View {
         modifier(HintOnHover(text: hint))
     }
 }
 
 private struct HintOnHover: ViewModifier {
-    
     @EnvironmentObject var appState: AppState
     
     let text: String

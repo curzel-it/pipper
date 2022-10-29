@@ -1,16 +1,7 @@
-//
-//  UserAgent.swift
-//  Pipper
-//
-//  Created by Federico Curzel on 08/08/22.
-//
-
 import Foundation
 
+// swiftlint:disable line_length
 class UserAgent {
-    
-    // swiftlint:disable line_length
-    
     static let iPhone = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
     
     static let iPad = "Mozilla/5.0 (iPad; CPU OS 15_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/103.0.5060.63 Mobile/15E148 Safari/604.1"
