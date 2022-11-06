@@ -12,7 +12,6 @@
 		1E2EBC3F289282180008ECB3 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2EBC3E289282180008ECB3 /* AppState.swift */; };
 		1E2EBC41289282580008ECB3 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2EBC40289282580008ECB3 /* Colors.swift */; };
 		1E34738728928C7600E8C840 /* Schwifty in Frameworks */ = {isa = PBXBuildFile; productRef = 1E34738628928C7600E8C840 /* Schwifty */; };
-		1E3AFC982891C03A00C6A465 /* OnWindow in Frameworks */ = {isa = PBXBuildFile; productRef = 1E3AFC972891C03A00C6A465 /* OnWindow */; };
 		1E3AFC9A2891C25100C6A465 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AFC992891C25100C6A465 /* WebView.swift */; };
 		1E3AFC9C2891C7C200C6A465 /* WebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AFC9B2891C7C200C6A465 /* WebViewDelegate.swift */; };
 		1E4497A7290D2E65008D7E5E /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4497A6290D2E65008D7E5E /* Toolbar.swift */; };
@@ -20,8 +19,6 @@
 		1E61D7A3290BE5AD006C4015 /* UserMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E61D7A2290BE5AD006C4015 /* UserMessage.swift */; };
 		1E628D0228916BED00570FCC /* MyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E628D0128916BED00570FCC /* MyApp.swift */; };
 		1E628D1428916BEE00570FCC /* PipperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E628D1328916BEE00570FCC /* PipperTests.swift */; };
-		1E628D1E28916BEE00570FCC /* PipperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E628D1D28916BEE00570FCC /* PipperUITests.swift */; };
-		1E628D2028916BEE00570FCC /* PipperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E628D1F28916BEE00570FCC /* PipperUITestsLaunchTests.swift */; };
 		1E628D352891745000570FCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E628D332891745000570FCC /* Assets.xcassets */; };
 		1E6FD79328A0F34600021336 /* BookmarksGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FD79228A0F34600021336 /* BookmarksGrid.swift */; };
 		1E6FD79528A0F36100021336 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FD79428A0F36100021336 /* Bookmark.swift */; };
@@ -48,16 +45,10 @@
 			remoteGlobalIDString = 1E628CFD28916BED00570FCC;
 			remoteInfo = Pipper;
 		};
-		1E628D1A28916BEE00570FCC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1E628CF628916BED00570FCC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1E628CFD28916BED00570FCC;
-			remoteInfo = Pipper;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E2B2BD42917E53300983495 /* Silica.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Silica.framework; sourceTree = "<group>"; };
 		1E2EBC3A289280670008ECB3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1E2EBC3C289281FF0008ECB3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1E2EBC3E289282180008ECB3 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -72,9 +63,6 @@
 		1E628D0A28916BED00570FCC /* Pipper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pipper.entitlements; sourceTree = "<group>"; };
 		1E628D0F28916BEE00570FCC /* PipperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PipperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E628D1328916BEE00570FCC /* PipperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipperTests.swift; sourceTree = "<group>"; };
-		1E628D1928916BEE00570FCC /* PipperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PipperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E628D1D28916BEE00570FCC /* PipperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipperUITests.swift; sourceTree = "<group>"; };
-		1E628D1F28916BEE00570FCC /* PipperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipperUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1E628D332891745000570FCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E6FD79228A0F34600021336 /* BookmarksGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksGrid.swift; sourceTree = "<group>"; };
 		1E6FD79428A0F36100021336 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
@@ -98,7 +86,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E93EEC02895C8DD006CF96A /* Kingfisher in Frameworks */,
-				1E3AFC982891C03A00C6A465 /* OnWindow in Frameworks */,
 				1E78955828AD33D0000F7077 /* LaunchAtLogin in Frameworks */,
 				1E34738728928C7600E8C840 /* Schwifty in Frameworks */,
 			);
@@ -111,16 +98,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1E628D1628916BEE00570FCC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E2B2BD32917E53200983495 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1E2B2BD42917E53300983495 /* Silica.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1E61D7A1290BE53E006C4015 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,9 +128,9 @@
 			children = (
 				1E628D0028916BED00570FCC /* Pipper */,
 				1E628D1228916BEE00570FCC /* PipperTests */,
-				1E628D1C28916BEE00570FCC /* PipperUITests */,
 				1E628CFF28916BED00570FCC /* Products */,
 				1ED28CA32892DB1500D35DA4 /* README.md */,
+				1E2B2BD32917E53200983495 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,7 +139,6 @@
 			children = (
 				1E628CFE28916BED00570FCC /* Pipper.app */,
 				1E628D0F28916BEE00570FCC /* PipperTests.xctest */,
-				1E628D1928916BEE00570FCC /* PipperUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,15 +159,6 @@
 				1E628D1328916BEE00570FCC /* PipperTests.swift */,
 			);
 			path = PipperTests;
-			sourceTree = "<group>";
-		};
-		1E628D1C28916BEE00570FCC /* PipperUITests */ = {
-			isa = PBXGroup;
-			children = (
-				1E628D1D28916BEE00570FCC /* PipperUITests.swift */,
-				1E628D1F28916BEE00570FCC /* PipperUITestsLaunchTests.swift */,
-			);
-			path = PipperUITests;
 			sourceTree = "<group>";
 		};
 		1E628D312891745000570FCC /* Resources */ = {
@@ -266,7 +244,6 @@
 			);
 			name = Pipper;
 			packageProductDependencies = (
-				1E3AFC972891C03A00C6A465 /* OnWindow */,
 				1E34738628928C7600E8C840 /* Schwifty */,
 				1E93EEBF2895C8DD006CF96A /* Kingfisher */,
 				1E78955728AD33D0000F7077 /* LaunchAtLogin */,
@@ -293,24 +270,6 @@
 			productReference = 1E628D0F28916BEE00570FCC /* PipperTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		1E628D1828916BEE00570FCC /* PipperUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1E628D2928916BEE00570FCC /* Build configuration list for PBXNativeTarget "PipperUITests" */;
-			buildPhases = (
-				1E628D1528916BEE00570FCC /* Sources */,
-				1E628D1628916BEE00570FCC /* Frameworks */,
-				1E628D1728916BEE00570FCC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1E628D1B28916BEE00570FCC /* PBXTargetDependency */,
-			);
-			name = PipperUITests;
-			productName = PipperUITests;
-			productReference = 1E628D1928916BEE00570FCC /* PipperUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -319,16 +278,12 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					1E628CFD28916BED00570FCC = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
 					1E628D0E28916BEE00570FCC = {
-						CreatedOnToolsVersion = 13.4.1;
-						TestTargetID = 1E628CFD28916BED00570FCC;
-					};
-					1E628D1828916BEE00570FCC = {
 						CreatedOnToolsVersion = 13.4.1;
 						TestTargetID = 1E628CFD28916BED00570FCC;
 					};
@@ -344,7 +299,6 @@
 			);
 			mainGroup = 1E628CF528916BED00570FCC;
 			packageReferences = (
-				1E3AFC962891C03A00C6A465 /* XCRemoteSwiftPackageReference "OnWindow" */,
 				1E34738528928C7600E8C840 /* XCRemoteSwiftPackageReference "schwifty" */,
 				1E93EEBE2895C8DD006CF96A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				1E78955628AD33D0000F7077 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
@@ -355,7 +309,6 @@
 			targets = (
 				1E628CFD28916BED00570FCC /* Pipper */,
 				1E628D0E28916BEE00570FCC /* PipperTests */,
-				1E628D1828916BEE00570FCC /* PipperUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -372,13 +325,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1E628D0D28916BEE00570FCC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1E628D1728916BEE00570FCC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -465,15 +411,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1E628D1528916BEE00570FCC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1E628D2028916BEE00570FCC /* PipperUITestsLaunchTests.swift in Sources */,
-				1E628D1E28916BEE00570FCC /* PipperUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -481,11 +418,6 @@
 			isa = PBXTargetDependency;
 			target = 1E628CFD28916BED00570FCC /* Pipper */;
 			targetProxy = 1E628D1028916BEE00570FCC /* PBXContainerItemProxy */;
-		};
-		1E628D1B28916BEE00570FCC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1E628CFD28916BED00570FCC /* Pipper */;
-			targetProxy = 1E628D1A28916BEE00570FCC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -523,6 +455,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -583,6 +516,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -609,24 +543,31 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Pipper/Resources/Pipper.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 5;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9L5V9XNS25;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Pipper/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pipper;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © Federico Curzel. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = it.curzel.pipper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -640,24 +581,31 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Pipper/Resources/Pipper.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 5;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9L5V9XNS25;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Pipper/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pipper;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © Federico Curzel. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = it.curzel.pipper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -672,6 +620,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9L5V9XNS25;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
@@ -691,6 +640,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9L5V9XNS25;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
@@ -700,40 +650,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pipper.app/Contents/MacOS/Pipper";
-			};
-			name = Release;
-		};
-		1E628D2A28916BEE00570FCC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9L5V9XNS25;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = it.curzel.PipperUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = Pipper;
-			};
-			name = Debug;
-		};
-		1E628D2B28916BEE00570FCC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9L5V9XNS25;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = it.curzel.PipperUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = Pipper;
 			};
 			name = Release;
 		};
@@ -767,15 +683,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1E628D2928916BEE00570FCC /* Build configuration list for PBXNativeTarget "PipperUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1E628D2A28916BEE00570FCC /* Debug */,
-				1E628D2B28916BEE00570FCC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -784,15 +691,7 @@
 			repositoryURL = "https://github.com/curzel-it/schwifty";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.4;
-			};
-		};
-		1E3AFC962891C03A00C6A465 /* XCRemoteSwiftPackageReference "OnWindow" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/curzel-it/OnWindow";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.1;
+				minimumVersion = 1.0.12;
 			};
 		};
 		1E78955628AD33D0000F7077 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
@@ -818,11 +717,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1E34738528928C7600E8C840 /* XCRemoteSwiftPackageReference "schwifty" */;
 			productName = Schwifty;
-		};
-		1E3AFC972891C03A00C6A465 /* OnWindow */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1E3AFC962891C03A00C6A465 /* XCRemoteSwiftPackageReference "OnWindow" */;
-			productName = OnWindow;
 		};
 		1E78955728AD33D0000F7077 /* LaunchAtLogin */ = {
 			isa = XCSwiftPackageProductDependency;

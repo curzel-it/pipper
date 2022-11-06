@@ -41,7 +41,9 @@ private class MyWebView: WKWebView {
     
     private func bindNavigationRequests() {
         requestsSink = appState.$navigationRequest.sink { request in
-            self.load(request)
+            Task { @MainActor in
+                self.load(request)
+            }
         }
     }
     

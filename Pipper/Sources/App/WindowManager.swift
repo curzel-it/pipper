@@ -13,8 +13,6 @@ class WindowManager: NSObject, NSWindowDelegate {
     
     func setup(window: NSWindow) {
         window.collectionBehavior = .canJoinAllSpaces
-        window.titlebarAppearsTransparent = true
-        window.titlebarSeparatorStyle = .none
         window.delegate = self
         window.setContentSize(appState.windowSize)
         

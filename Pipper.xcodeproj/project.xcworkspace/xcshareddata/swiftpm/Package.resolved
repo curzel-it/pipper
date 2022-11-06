@@ -19,21 +19,12 @@
       }
     },
     {
-      "identity" : "onwindow",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/curzel-it/OnWindow",
-      "state" : {
-        "revision" : "6e74868e321bbdbe02b4f0ca37cdc29a5a584e51",
-        "version" : "1.0.1"
-      }
-    },
-    {
       "identity" : "schwifty",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/curzel-it/schwifty",
       "state" : {
-        "revision" : "cefa806db291f57e48bb48d51a8d2c7f10d1857c",
-        "version" : "1.0.4"
+        "revision" : "d989a7054c9f8a132078dfc1843ea5f2b55be47f",
+        "version" : "1.0.12"
       }
     }
   ],

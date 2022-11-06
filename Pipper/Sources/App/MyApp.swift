@@ -1,4 +1,3 @@
-import OnWindow
 import SwiftUI
 
 @main
