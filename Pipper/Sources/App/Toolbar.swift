@@ -3,12 +3,12 @@ import SwiftUI
 extension View {
     func browsingToolbar() -> some View {
         self.toolbar {
-            ToolbarItem { WebHomeToggle() }
-            ToolbarItem { SettingsTool() }
-            ToolbarItem { ReloadTool() }
-            ToolbarItem { ShareTool() }
             ToolbarItem { SearchFromClipboardTool() }
+            ToolbarItem { WebHomeToggle() }
+            ToolbarItem { ShareTool() }
             ToolbarItem { SearchTool() }
+            ToolbarItem { ReloadTool() }
+            ToolbarItem { SettingsTool() }
         }
     }
 }
