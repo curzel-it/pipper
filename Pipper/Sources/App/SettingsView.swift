@@ -9,7 +9,6 @@ struct SettingsView: View {
             HomepageSelection()
             SearchEngineSection()
             UserAgentSection()
-            // SizeSection()
             WindowSection()
             LaunchAtLoginSection()
             Footer().padding(.top)

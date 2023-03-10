@@ -2,13 +2,14 @@ import SwiftUI
 
 extension View {
     func browsingToolbar() -> some View {
-        self.toolbar {
+        toolbar {
             ToolbarItem { SearchFromClipboardTool() }
             ToolbarItem { WebHomeToggle() }
             ToolbarItem { ShareTool() }
             ToolbarItem { SearchTool() }
             ToolbarItem { ReloadTool() }
             ToolbarItem { SettingsTool() }
+            ToolbarItem { FloatingTool() }
         }
     }
 }
@@ -31,7 +32,7 @@ private struct WebHomeToggle: View {
     
     var body: some View {
         Tool(icon: appState.showHome ? "network" : "house.fill") {
-            appState.showHome = !appState.showHome
+            appState.showHome.toggle()
             appState.showSearch = false
             appState.showSettings = false
         }
@@ -41,6 +42,22 @@ private struct WebHomeToggle: View {
 }
 
 private struct SearchTool: View {
+    @EnvironmentObject var appState: AppState
+    
+    var iconName: String {
+        appState.isHovering ? "pip.fill" : "pip"
+    }
+    
+    var body: some View {
+        Tool(icon: iconName) {
+            appState.isHovering.toggle()
+        }
+        .keyboardShortcut(.init("P"), modifiers: [.command, .shift])
+        .onHover(hint: "Cmd + Shift + P\nToggle floating behavior")
+    }
+}
+
+private struct FloatingTool: View {
     @EnvironmentObject var appState: AppState
     
     var body: some View {
