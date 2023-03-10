@@ -74,7 +74,7 @@
 		1E93EEC72895D941006CF96A /* Forms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forms.swift; sourceTree = "<group>"; };
 		1E93EECA289668F3006CF96A /* BookmarkEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkEditor.swift; sourceTree = "<group>"; };
 		1EC926B6289F98BD0056E42C /* URLUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLUtils.swift; sourceTree = "<group>"; };
-		1ED0A57D2893C3A200272CEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1ED0A57D2893C3A200272CEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1ED28C9F2892C4A200D35DA4 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 		1ED28CA12892CF3700D35DA4 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		1ED28CA32892DB1500D35DA4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -146,7 +146,6 @@
 		1E628D0028916BED00570FCC /* Pipper */ = {
 			isa = PBXGroup;
 			children = (
-				1ED0A57D2893C3A200272CEB /* Info.plist */,
 				1E628D3628917EE600570FCC /* Sources */,
 				1E628D312891745000570FCC /* Resources */,
 			);
@@ -164,6 +163,7 @@
 		1E628D312891745000570FCC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1ED0A57D2893C3A200272CEB /* Info.plist */,
 				1E628D0A28916BED00570FCC /* Pipper.entitlements */,
 				1E628D332891745000570FCC /* Assets.xcassets */,
 				1E61D79C290BCA91006C4015 /* Localizable.strings */,
@@ -547,7 +547,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 102030;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9L5V9XNS25;
@@ -558,7 +558,7 @@
 					"$(PROJECT_DIR)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Pipper/Info.plist;
+				INFOPLIST_FILE = Pipper/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pipper;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © Federico Curzel. All rights reserved.";
@@ -567,7 +567,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = it.curzel.pipper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -585,7 +585,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 102030;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9L5V9XNS25;
@@ -596,7 +596,7 @@
 					"$(PROJECT_DIR)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Pipper/Info.plist;
+				INFOPLIST_FILE = Pipper/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pipper;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © Federico Curzel. All rights reserved.";
@@ -605,7 +605,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = it.curzel.pipper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
