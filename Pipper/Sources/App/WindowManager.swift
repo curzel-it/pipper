@@ -1,9 +1,12 @@
 import Combine
 import SwiftUI
+import WindowsDetector
 
 class WindowManager: NSObject, NSWindowDelegate {
+    private let windowsDetector = WindowsDetectionService()
+    private weak var window: NSWindow?
     private let appState: AppState
-    private var hoverSink: AnyCancellable?
+    private var disposables = Set<AnyCancellable>()
     
     init(appState: AppState) {
         self.appState = appState
@@ -12,13 +15,17 @@ class WindowManager: NSObject, NSWindowDelegate {
     }
     
     func setup(window: NSWindow) {
+        self.window = window
         window.collectionBehavior = .canJoinAllSpaces
         window.delegate = self
         window.setContentSize(appState.windowSize)
-        
-        hoverSink = appState.$isHovering.sink { shouldHover in
-            window.level = shouldHover ? .mainMenu : .normal
-        }
+        bindHovering()
+    }
+                       
+    private func bindHovering() {
+        appState.$isHovering
+            .sink { self.window?.level = $0 ? .floating : .normal }
+            .store(in: &disposables)
     }
     
     func windowWillResize(_ sender: NSWindow, to newSize: NSSize) -> NSSize {

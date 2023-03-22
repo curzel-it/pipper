@@ -2,7 +2,7 @@ import Schwifty
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var appState = AppState()
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         ZStack {

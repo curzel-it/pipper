@@ -35,6 +35,7 @@
 		1ED28CA02892C4A200D35DA4 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED28C9F2892C4A200D35DA4 /* WindowManager.swift */; };
 		1ED28CA22892CF3700D35DA4 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED28CA12892CF3700D35DA4 /* SearchBar.swift */; };
 		1ED28CA42892DB1500D35DA4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1ED28CA32892DB1500D35DA4 /* README.md */; };
+		64F923E129CA2FC700F033D8 /* WindowsDetector in Frameworks */ = {isa = PBXBuildFile; productRef = 64F923E029CA2FC700F033D8 /* WindowsDetector */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64F923E129CA2FC700F033D8 /* WindowsDetector in Frameworks */,
 				1E93EEC02895C8DD006CF96A /* Kingfisher in Frameworks */,
 				1E78955828AD33D0000F7077 /* LaunchAtLogin in Frameworks */,
 				1E34738728928C7600E8C840 /* Schwifty in Frameworks */,
@@ -247,6 +249,7 @@
 				1E34738628928C7600E8C840 /* Schwifty */,
 				1E93EEBF2895C8DD006CF96A /* Kingfisher */,
 				1E78955728AD33D0000F7077 /* LaunchAtLogin */,
+				64F923E029CA2FC700F033D8 /* WindowsDetector */,
 			);
 			productName = Pipper;
 			productReference = 1E628CFE28916BED00570FCC /* Pipper.app */;
@@ -302,6 +305,7 @@
 				1E34738528928C7600E8C840 /* XCRemoteSwiftPackageReference "schwifty" */,
 				1E93EEBE2895C8DD006CF96A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				1E78955628AD33D0000F7077 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
+				64F923DF29CA2FC700F033D8 /* XCRemoteSwiftPackageReference "WindowsDetector" */,
 			);
 			productRefGroup = 1E628CFF28916BED00570FCC /* Products */;
 			projectDirPath = "";
@@ -547,7 +551,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 102030;
+				CURRENT_PROJECT_VERSION = 102212;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9L5V9XNS25;
@@ -567,7 +571,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = it.curzel.pipper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -585,7 +589,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 102030;
+				CURRENT_PROJECT_VERSION = 102212;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9L5V9XNS25;
@@ -605,7 +609,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = it.curzel.pipper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -710,6 +714,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		64F923DF29CA2FC700F033D8 /* XCRemoteSwiftPackageReference "WindowsDetector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/curzel-it/WindowsDetector";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -727,6 +739,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1E93EEBE2895C8DD006CF96A /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		64F923E029CA2FC700F033D8 /* WindowsDetector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64F923DF29CA2FC700F033D8 /* XCRemoteSwiftPackageReference "WindowsDetector" */;
+			productName = WindowsDetector;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

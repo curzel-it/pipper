@@ -2,7 +2,10 @@ import SwiftUI
 
 @main
 struct PipperApp: App {
-    @StateObject var appState = AppState()
+    // swiftlint:disable:next weak_delegate
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
+    @StateObject var appState = AppState.global
     
     var body: some Scene {
         WindowGroup {
@@ -11,3 +14,15 @@ struct PipperApp: App {
         }
     }
 }
+
+class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        if AppState.global.accessoryMode {
+            NSApp.setActivationPolicy(.accessory)
+        } else {
+            NSApp.setActivationPolicy(.regular)
+        }
+    }
+}
+
+

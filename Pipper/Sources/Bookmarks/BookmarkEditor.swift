@@ -33,7 +33,7 @@ struct BookmarkEditor: View {
     var body: some View {
         VStack {
             Text(viewTitle)
-                .font(.title3.bold())
+                .font(.title.bold())
                 .positioned(.leading)
                 .padding(.bottom, 8)
             
@@ -48,7 +48,6 @@ struct BookmarkEditor: View {
                 Button("Save", action: save).keyboardShortcut(.defaultAction)
             }
         }
-        .frame(width: 300)
         .padding()
         .onReceive(Just(url)) { updateIconUrl(from: $0) }
         .onSubmit(save)

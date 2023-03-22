@@ -2,8 +2,15 @@ import Combine
 import SwiftUI
 
 class AppState: ObservableObject {
+    static let global = AppState()
+    
     @Published private(set) var bookmarks: [Bookmark] = []
     @Published var history: [URL] = []
+    @Published var accessoryMode: Bool = false {
+        didSet {
+            self.storedAccessoryMode = accessoryMode
+        }
+    }
     @Published var isHovering: Bool = true {
         didSet {
             self.storedIsHovering = isHovering
@@ -24,6 +31,7 @@ class AppState: ObservableObject {
     @Published var vistedUrlsStack: [URL] = []
             
     @AppStorage("homepageUrl") var homepageUrl: String = ""
+    @AppStorage("accessoryMode") private var storedAccessoryMode = false
     @AppStorage("isHovering") private var storedIsHovering = true
     @AppStorage("searchEngineBaseUrl") var searchEngineBaseUrl: String = ""
     @AppStorage("bookmarks") private var storedBookmarks: Data?
@@ -41,8 +49,9 @@ class AppState: ObservableObject {
         WindowManager(appState: self)
     }()
     
-    init() {
+    private init() {
         self.isHovering = self.storedIsHovering
+        self.accessoryMode = self.storedAccessoryMode
         self.userAgent = self.storedUserAgent
         loadBookmarks()
         loadInitialContent()
