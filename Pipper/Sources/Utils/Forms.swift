@@ -5,7 +5,7 @@ struct FormField<Content: View>: View {
     let title: String
     var titleWidth: CGFloat = 150
     let contentWidth: CGFloat = 250
-    var hint: String? = nil
+    var hint: String?
     let content: () -> Content
     
     var body: some View {

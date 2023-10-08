@@ -281,7 +281,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					1E628CFD28916BED00570FCC = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -703,7 +703,7 @@
 			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.2.0;
+				minimumVersion = 5.0.0;
 			};
 		};
 		1E93EEBE2895C8DD006CF96A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
@@ -711,7 +711,7 @@
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
+				minimumVersion = 7.9.1;
 			};
 		};
 		64F923DF29CA2FC700F033D8 /* XCRemoteSwiftPackageReference "WindowsDetector" */ = {

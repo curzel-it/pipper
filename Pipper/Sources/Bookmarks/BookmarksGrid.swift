@@ -45,23 +45,25 @@ private struct BookmarkItem: View {
     }
     
     var body: some View {
-        VStack {
-            KFImage(URL(string: bookmark.icon))
-                .resizable()
-                .frame(width: 24, height: 24)
-            Text(bookmark.title)
-                .lineLimit(2)
-                .multilineTextAlignment(.center)
-            Spacer(minLength: 0)
+        Button { visit() } label: {
+            VStack {
+                KFImage(URL(string: bookmark.icon))
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                    .padding(.top, 4)
+                Text(bookmark.title)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.center)
+                Spacer(minLength: 0)
+            }
+            .frame(width: 80)
+            .frame(height: 64)
         }
-        .frame(width: 80)
-        .frame(height: 64)
         .contextMenu {
             MenuItem("Edit (E)", icon: "pencil", key: "E", action: edit)
             MenuItem("Delete (E)", icon: "trash", key: "D", action: delete)
             MenuItem("Visit (E)", icon: "return", key: "V", action: visit)
         }
-        .onTapGesture(perform: visit)
         .sheet(isPresented: $showingEditor) {
             BookmarkEditor(editing: $showingEditor, original: bookmark)
         }
@@ -71,8 +73,8 @@ private struct BookmarkItem: View {
     func visit() {
         withAnimation {
             appState.showHome = false
-            appState.load(.urlString(urlString: bookmark.url))
         }
+        appState.load(.urlString(urlString: bookmark.url))
     }
     
     func edit() {

@@ -1,9 +1,7 @@
 import Combine
 import SwiftUI
 
-class AppState: ObservableObject {
-    static let global = AppState()
-    
+class AppState: ObservableObject {    
     @Published private(set) var bookmarks: [Bookmark] = []
     @Published var history: [URL] = []
     @Published var accessoryMode: Bool = false {
@@ -49,7 +47,7 @@ class AppState: ObservableObject {
         WindowManager(appState: self)
     }()
     
-    private init() {
+    init() {
         self.isHovering = self.storedIsHovering
         self.accessoryMode = self.storedAccessoryMode
         self.userAgent = self.storedUserAgent
