@@ -16,6 +16,7 @@ class AppState: ObservableObject {
     }
     @Published var isLoading = false
     @Published private(set) var navigationRequest: NavigationRequest = .reload
+    @Published var showTitleBar = true
     @Published var showAdditionalInfo = true
     @Published var showHome: Bool = true
     @Published var showSearch = false

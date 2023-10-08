@@ -12,6 +12,7 @@ class WindowManager: NSObject, NSWindowDelegate {
         self.appState = appState
         super.init()
         appState.runtimeEvents.send(.launching)
+        bindTitleBarVisibility()
     }
     
     func setup(window: NSWindow) {
@@ -19,13 +20,8 @@ class WindowManager: NSObject, NSWindowDelegate {
         window.collectionBehavior = .canJoinAllSpaces
         window.delegate = self
         window.setContentSize(appState.windowSize)
+        window.toolbar(visible: true)
         bindHovering()
-    }
-                       
-    private func bindHovering() {
-        appState.$isHovering
-            .sink { self.window?.level = $0 ? .floating : .normal }
-            .store(in: &disposables)
     }
     
     func windowWillResize(_ sender: NSWindow, to newSize: NSSize) -> NSSize {
@@ -43,5 +39,44 @@ class WindowManager: NSObject, NSWindowDelegate {
     
     func windowDidResignKey(_ notification: Notification) {
         appState.showAdditionalInfo = false
+    }
+    
+    private func bindTitleBarVisibility() {
+        appState.$showTitleBar
+            .sink { [weak self] showTitleBar in
+                let withTitle: NSWindow.StyleMask = [.titled, .closable, .miniaturizable, .resizable]
+                self?.window?.styleMask = showTitleBar ? withTitle : [.borderless]
+            }
+            .store(in: &disposables)
+    }
+                       
+    private func bindHovering() {
+        appState.$isHovering
+            .sink { self.window?.level = $0 ? .floating : .normal }
+            .store(in: &disposables)
+    }
+}
+
+private extension NSWindow {
+    func toolbar(visible: Bool) {
+        let currentFrame = frame
+        if visible {
+            setToolbarVisible()
+        } else {
+            setToolbarInvisible()
+        }
+        
+        setFrame(currentFrame, display: true)
+        Task { @MainActor in
+            setFrame(currentFrame, display: true)
+        }
+    }
+    
+    private func setToolbarVisible() {
+        styleMask = [.titled, .closable, .miniaturizable, .resizable]
+    }
+    
+    private func setToolbarInvisible() {
+        styleMask = [.borderless]
     }
 }
