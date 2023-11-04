@@ -29,17 +29,28 @@ struct HideToolbar: View {
         } label: {
             Image(systemName: "square.topthird.inset.filled")
         }
+        .onHover(hint: "Hides the toolbar")
     }
 }
 
 struct ShowToolbarToggle: View {
     @EnvironmentObject var appState: AppState
     
+    @State var scale: CGFloat = 3
+    @State var color: Color? = .green
+    
     var body: some View {
         Button {
             withAnimation { appState.showToolbar = true }
         } label: {
             Image(systemName: "square.topthird.inset.filled")
+        }
+        .scaleEffect(CGSize(width: scale, height: scale))
+        .onHover(hint: "Shows the toolbar")
+        .onAppear {
+            withAnimation {
+                scale = 1
+            }
         }
     }
 }
