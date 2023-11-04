@@ -23,17 +23,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/curzel-it/schwifty",
       "state" : {
-        "revision" : "d989a7054c9f8a132078dfc1843ea5f2b55be47f",
-        "version" : "1.0.12"
+        "revision" : "ae4b35c9ab87ca3468a5d53fe2875fe9a3aa0ec4",
+        "version" : "1.2.1"
       }
     },
     {
-      "identity" : "windowsdetector",
+      "identity" : "swinject",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/curzel-it/WindowsDetector",
+      "location" : "https://github.com/Swinject/Swinject",
       "state" : {
-        "revision" : "9649d329e30e692c32787dfb022119d0f6b173e8",
-        "version" : "1.0.5"
+        "revision" : "463cb2d659c8ae34899d18057ea5b1bb86fc3178",
+        "version" : "2.8.4"
       }
     }
   ],

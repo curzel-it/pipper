@@ -1,16 +1,74 @@
 import SwiftUI
 
-extension View {
-    func browsingToolbar() -> some View {
-        toolbar {
-            ToolbarItem { SearchFromClipboardTool() }
-            ToolbarItem { WebHomeToggle() }
-            ToolbarItem { ShareTool() }
-            ToolbarItem { SearchTool() }
-            ToolbarItem { ReloadTool() }
-            ToolbarItem { SettingsTool() }
-            ToolbarItem { FloatingTool() }
+struct Toolbar: View {
+    @EnvironmentObject var appState: AppState
+    
+    var body: some View {
+        HStack(spacing: .sm) {
+            WindowControls()
+            WindowMover()
+            HideToolbar()
+            SearchFromClipboardTool()
+            WebHomeToggle()
+            ShareTool()
+            SearchTool()
+            ReloadTool()
+            SettingsTool()
+            FloatingTool()
         }
+        .positioned(.leading)
+    }
+}
+
+struct HideToolbar: View {
+    @EnvironmentObject var appState: AppState
+    
+    var body: some View {
+        Button {
+            withAnimation { appState.showToolbar = false }
+        } label: {
+            Image(systemName: "square.topthird.inset.filled")
+        }
+    }
+}
+
+struct ShowToolbarToggle: View {
+    @EnvironmentObject var appState: AppState
+    
+    var body: some View {
+        Button {
+            withAnimation { appState.showToolbar = true }
+        } label: {
+            Image(systemName: "square.topthird.inset.filled")
+        }
+    }
+}
+
+private struct WindowControls: View {    
+    var body: some View {
+        HStack(spacing: .sm) {
+            CircleButton(color: Color.error)
+                .onTapGesture {
+                    NSApplication.shared.terminate(self)
+                }
+            
+            CircleButton(color: Color.warning)
+                .onTapGesture {
+                    @Inject var windowManager: WindowManager
+                    windowManager.miniaturize()
+                }
+        }
+    }
+}
+
+private struct CircleButton: View {
+    let color: Color
+    
+    var body: some View {
+        Circle()
+            .fill(color)
+            .frame(width: 12)
+            .frame(height: 12)
     }
 }
 
@@ -121,4 +179,3 @@ private struct SearchFromClipboardTool: View {
         .onHover(hint: "Cmd + Shift + V\nSearch text from clipboard")
     }
 }
-

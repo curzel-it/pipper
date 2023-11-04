@@ -1,12 +1,13 @@
 import SwiftUI
 
-struct Homepage: View {
+struct BookmarksPage: View {
     @EnvironmentObject var appState: AppState
     
     var body: some View {
         ScrollView {
-            BookmarksGrid().padding()
+            BookmarksGrid()
         }
         .frame(minWidth: 320)
+        .padding(.horizontal, .md)   
     }
 }

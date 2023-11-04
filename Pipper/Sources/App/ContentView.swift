@@ -1,19 +1,49 @@
 import Schwifty
+import Swinject
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var appState = AppState()
+    @StateObject var appState = Container.main.resolve(AppState.self)!
     
     var body: some View {
-        ZStack {
-            WebView().opacity(appState.showHome ? 0 : 1)
-            Homepage().opacity(appState.showHome ? 1 : 0)
-            if appState.showSearch { SearchBar() }
-            UserMessages()
+        VStack(spacing: .zero) {
+            if appState.showToolbar {
+                Toolbar()
+                    .padding(.horizontal, .md)
+                    .padding(.vertical, .sm)
+            }
+            
+            ZStack {                
+                WebView().opacity(appState.showHome ? 0 : 1)
+                BookmarksPage().padding(.top, .sm).opacity(appState.showHome ? 1 : 0)
+                
+                UserMessages()
+                    .padding(.bottom, 50)
+                    .positioned(.bottom)
+                
+                if !appState.showToolbar {
+                    ShowToolbarToggle()
+                        .padding(.sm)
+                        .positioned(.trailingBottom)
+                }
+            }
         }
+        .background(
+            ZStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.primaryBackground)
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.black.opacity(0.5), lineWidth: 4)
+            }
+        )
+        .clipShape(RoundedRectangle(cornerSize: CGSize(width: 9, height: 9)))
         .sheet(isPresented: $appState.showSettings) { SettingsView() }
-        .browsingToolbar()
-        .onWindow { appState.windowManager.setup(window: $0) }
+        .sheet(isPresented: $appState.showSearch) { SearchView() }
+        .onWindow {
+            @Inject var windowManager: WindowManager
+            windowManager.setup(window: $0)
+        }
+        .opacity(appState.windowOpacity)
         .environmentObject(appState)
     }
 }

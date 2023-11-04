@@ -5,19 +5,22 @@ struct PipperApp: App {
     // swiftlint:disable:next weak_delegate
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
         
+    init() {
+        Dependencies.setup()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            EmptyView().onWindow { $0.close() }
         }
     }
 }
 
 class AppDelegate: NSObject, NSApplicationDelegate {
-    func applicationDidFinishLaunching(_ notification: Notification) {
-        if AppState().accessoryMode {
-            NSApp.setActivationPolicy(.accessory)
-        } else {
-            NSApp.setActivationPolicy(.regular)
-        }
+    func applicationDidFinishLaunching(_ notification: Notification) {        
+        @Inject var appState: AppState
+        @Inject var windowManager: WindowManager
+        windowManager.resetAccessoryMode(enabled: appState.accessoryMode)
+        windowManager.newWindow()
     }
 }

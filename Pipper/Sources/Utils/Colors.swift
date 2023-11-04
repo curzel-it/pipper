@@ -1,12 +1,13 @@
 import SwiftUI
 
 extension Color {
-    static let label = Color(nsColor: NSColor.labelColor)
-    static let secondaryLabel = Color(nsColor: NSColor.secondaryLabelColor)
-    static let tertiaryLabel = Color(nsColor: NSColor.tertiaryLabelColor)
-    static let secondaryBackground = Color(nsColor: NSColor.windowBackgroundColor)
+    static var label: Color { Color("Label") }
+    static var contrastLabel: Color { Color("ContrastLabel") }
     
-    static let error = Color.red
-    static let warning = Color.orange
-    static let success = Color.green
+    static var primaryBackground: Color { Color("PrimaryBackground") }
+    static var contrastBackground: Color { Color("ContrastBackground") }
+    
+    static var error: Color { Color("Error") }
+    static var warning: Color { Color("Warning") }
+    static var success: Color { Color("Success") }
 }

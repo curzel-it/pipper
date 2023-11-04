@@ -1,34 +1,41 @@
 import Combine
 import SwiftUI
 
-class AppState: ObservableObject {    
+class AppState: ObservableObject {
     @Published private(set) var bookmarks: [Bookmark] = []
     @Published var history: [URL] = []
     @Published var accessoryMode: Bool = false {
         didSet {
-            self.storedAccessoryMode = accessoryMode
+            storedAccessoryMode = accessoryMode
+            @Inject var windowManager: WindowManager
+            windowManager.resetAccessoryMode(enabled: accessoryMode)
         }
     }
     @Published var isHovering: Bool = true {
         didSet {
-            self.storedIsHovering = isHovering
+            storedIsHovering = isHovering
         }
     }
     @Published var isLoading = false
     @Published private(set) var navigationRequest: NavigationRequest = .reload
-    @Published var showTitleBar = true
     @Published var showAdditionalInfo = true
     @Published var showHome: Bool = true
+    @Published var showToolbar: Bool = true
     @Published var showSearch = false
     @Published var showSettings = false
     @Published var userAgent: String = "" {
-       didSet {
-           self.storedUserAgent = userAgent
-       }
-   }
+        didSet {
+            storedUserAgent = userAgent
+        }
+    }
     @Published var userMessage: UserMessage?
     @Published var vistedUrlsStack: [URL] = []
-            
+    @Published var windowOpacity: CGFloat = 1 {
+        didSet {
+            storedWindowOpacity = windowOpacity
+        }
+    }
+    
     @AppStorage("homepageUrl") var homepageUrl: String = ""
     @AppStorage("accessoryMode") private var storedAccessoryMode = false
     @AppStorage("isHovering") private var storedIsHovering = true
@@ -37,21 +44,16 @@ class AppState: ObservableObject {
     @AppStorage("userAgent") private var storedUserAgent: String = ""
     @AppStorage("windowWidth") private var windowWidth: Double = 600
     @AppStorage("windowHeight") private var windowHeight: Double = 600
-        
-    let runtimeEvents = CurrentValueSubject<RuntimeEvent, Never>(.loading)
+    @AppStorage("windowOpacity") private var storedWindowOpacity: Double = 1
     
     lazy var webViewDelegate: WebViewDelegate = {
         WebViewDelegate(appState: self)
     }()
     
-    lazy var windowManager: WindowManager = {
-        WindowManager(appState: self)
-    }()
-    
     init() {
-        self.isHovering = self.storedIsHovering
-        self.accessoryMode = self.storedAccessoryMode
-        self.userAgent = self.storedUserAgent
+        isHovering = self.storedIsHovering
+        accessoryMode = self.storedAccessoryMode
+        userAgent = self.storedUserAgent
         loadBookmarks()
         loadInitialContent()
     }
@@ -72,12 +74,6 @@ class AppState: ObservableObject {
         self.showSearch = false
         self.navigationRequest = request
     }
-}
-
-enum RuntimeEvent {
-    case loading
-    case launching
-    case closing
 }
 
 extension AppState {
@@ -102,7 +98,7 @@ extension AppState {
     
     fileprivate func loadBookmarks() {
         if let data = storedBookmarks,
-            let value = try? JSONDecoder().decode([Bookmark].self, from: data) {
+           let value = try? JSONDecoder().decode([Bookmark].self, from: data) {
             self.bookmarks = value
         }
     }

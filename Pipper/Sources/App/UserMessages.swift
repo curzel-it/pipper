@@ -9,11 +9,9 @@ struct UserMessages: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(message.severity.color)
                 .padding()
-                .background(Color.secondaryBackground)
+                .background(Color.contrastBackground)
                 .cornerRadius(8)
                 .shadow(radius: 16)
-                .positioned(.bottom)
-                .padding(.bottom, 50)
                 .onReceive(appState.$userMessage, perform: handle)
         }
     }
@@ -35,7 +33,7 @@ extension UserMessage.Severity {
         switch self {
         case .error: return .error
         case .warning: return .warning
-        case .info: return .label
+        case .info: return .contrastLabel
         case .success: return .success
         }
     }

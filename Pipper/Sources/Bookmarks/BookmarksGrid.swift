@@ -17,14 +17,15 @@ struct BookmarksGrid: View {
                 Spacer()
             }
             LazyVGrid(
-                columns: [.init(.adaptive(minimum: 80, maximum: 150), spacing: 20)],
+                columns: [.init(.adaptive(minimum: 80, maximum: 150), spacing: Spacing.md.rawValue)],
                 alignment: .leading,
-                spacing: 20
+                spacing: Spacing.md.rawValue
             ) {
                 ForEach(appState.bookmarks) { item in
                     BookmarkItem(bookmark: item)
                 }
             }
+            Spacer()
         }
         .sheet(isPresented: $showingEditor) {
             BookmarkEditor(editing: $showingEditor, original: nil)

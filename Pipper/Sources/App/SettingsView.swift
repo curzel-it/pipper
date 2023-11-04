@@ -1,10 +1,11 @@
+import Combine
 import LaunchAtLogin
 import Schwifty
 import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: .md) {
             Text("Settings").font(.title.bold()).positioned(.leading)
             HomepageSelection()
             SearchEngineSection()
@@ -99,7 +100,7 @@ private struct LaunchAtLoginSection: View {
 
 private struct WindowSection: View {
     @EnvironmentObject var appState: AppState
-    
+   
     var body: some View {
         FormField(
             title: "Stay over other apps",
@@ -113,15 +114,19 @@ Can be toggled on/off with `CMD + Shift + P`
                 .positioned(.leading)
         }
         FormField(
-            title: "Stay over all spaces",
+            title: "Join fullscreen spaces",
             hint: """
 Note: Close and Relaunch the app to apply!
-Pipper window will automatically join any active space, including those dedicated to fullscreen apps.
+By default Pipper window automatically joins any active space (even with this off).
+With this option on it will also join spaces dedicated to fullscreen apps.
 """
         ) {
             Toggle(isOn: $appState.accessoryMode, label: { EmptyView() })
                 .toggleStyle(.switch)
                 .positioned(.leading)
+        }
+        FormField(title: "Window Opacity") {
+            Slider(value: $appState.windowOpacity, in: (0.1...1))
         }
     }
 }

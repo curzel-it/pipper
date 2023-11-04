@@ -3,12 +3,13 @@ import Foundation
 import WebKit
 
 class WebViewDelegate: NSObject, WKNavigationDelegate {
-    private var eventsSink: AnyCancellable!
-    private let appState: AppState
+    @Inject private var appState: AppState
+    @Inject private var windowManager: WindowManager
+    @Inject private var runtimeEvents: RuntimeEvents
     weak var webView: WKWebView?
+    private var eventsSink: AnyCancellable!
     
     init(appState: AppState) {
-        self.appState = appState
         super.init()
         setKillWebViewWhenWindowCloses()
     }
@@ -16,7 +17,7 @@ class WebViewDelegate: NSObject, WKNavigationDelegate {
     private func setKillWebViewWhenWindowCloses() {
         // Video playing in the WKWebView continue to play after the window
         // gets closed, this does the trick.
-        eventsSink = appState.runtimeEvents.sink { [weak self] event in
+        eventsSink = runtimeEvents.events().sink { [weak self] event in
             guard case .closing = event else { return }
             guard let webView = self?.webView else { return }
             webView.stopLoading()
