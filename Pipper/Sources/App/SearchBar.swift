@@ -1,29 +1,29 @@
 import Combine
 import Foundation
 import SwiftUI
-import Schwifty
 
-struct SearchView: View {
+struct SearchBar: View {
     @EnvironmentObject var appState: AppState
     @State var text: String = ""
     @FocusState var focused: Bool
     
     var body: some View {
-        VStack(spacing: .md) {
-            Text("Search").font(.title.bold()).positioned(.leading)
-            
+        HStack {
             TextField("Search...", text: $text)
-                .focused($focused, equals: true)
+                .textFieldStyle(.plain)
+                .foregroundColor(Color.contrastLabel)
+                .padding()
                 .onSubmit(searchOrVisit)
+                .focused($focused)
                 .onAppear { focused = true }
-            
-            Button("Search", action: searchOrVisit)
-                .positioned(.trailing)
-                .keyboardShortcut(.cancelAction)
         }
-        .padding()
+        .padding(.trailing)
+        .background(Color.contrastBackground)
+        .cornerRadius(8)
+        .shadow(radius: 16)
+        .padding(.horizontal, 40)
+        .onSubmit(searchOrVisit)
         .onExitCommand(perform: close)
-        .frame(minWidth: 400)
     }
     
     private func searchOrVisit() {

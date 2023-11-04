@@ -26,6 +26,10 @@ struct ContentView: View {
                         .padding(.sm)
                         .positioned(.trailingBottom)
                 }
+                
+                if appState.showSearch {
+                    SearchBar()
+                }
             }
         }
         .background(
@@ -38,7 +42,6 @@ struct ContentView: View {
         )
         .clipShape(RoundedRectangle(cornerSize: CGSize(width: 9, height: 9)))
         .sheet(isPresented: $appState.showSettings) { SettingsView() }
-        .sheet(isPresented: $appState.showSearch) { SearchView() }
         .opacity(appState.windowOpacity)
         .environmentObject(appState)
     }
