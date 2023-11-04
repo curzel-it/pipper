@@ -39,10 +39,6 @@ struct ContentView: View {
         .clipShape(RoundedRectangle(cornerSize: CGSize(width: 9, height: 9)))
         .sheet(isPresented: $appState.showSettings) { SettingsView() }
         .sheet(isPresented: $appState.showSearch) { SearchView() }
-        .onWindow {
-            @Inject var windowManager: WindowManager
-            windowManager.setup(window: $0)
-        }
         .opacity(appState.windowOpacity)
         .environmentObject(appState)
     }

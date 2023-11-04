@@ -1,12 +1,15 @@
 import Combine
 import SwiftUI
+import Schwifty
 
 class WindowManager: NSObject, NSWindowDelegate {
-    private weak var window: NSWindow?
+    private weak var window: PipperWindow?
     private var disposables = Set<AnyCancellable>()
     
     @Inject private var appState: AppState
     @Inject private var runtimeEvents: RuntimeEvents
+    
+    private let tag = "WindowManager"
     
     override init() {
         super.init()
@@ -19,8 +22,10 @@ class WindowManager: NSObject, NSWindowDelegate {
     
     func newWindow() {
         let controller = NSHostingController(rootView: ContentView())
-        let window = NSWindow(contentViewController: controller)
-        setup(window: window)
+        let window = PipperWindow(contentViewController: controller)
+        self.window = window
+        window.delegate = self
+        window.setup()
         window.show()
     }
     
@@ -30,18 +35,6 @@ class WindowManager: NSObject, NSWindowDelegate {
         } else {
             NSApp.setActivationPolicy(.regular)
         }
-    }
-    
-    func setup(window: NSWindow) {
-        self.window = window
-        window.hasShadow = false
-        window.backgroundColor = .clear
-        window.collectionBehavior = .canJoinAllSpaces
-        window.delegate = self
-        window.setContentSize(appState.windowSize)
-        window.styleMask = [.borderless, .miniaturizable, .resizable]
-        window.isOpaque = false
-        bindHovering()
     }
     
     func windowWillResize(_ sender: NSWindow, to newSize: NSSize) -> NSSize {
@@ -54,16 +47,46 @@ class WindowManager: NSObject, NSWindowDelegate {
     }
     
     func windowDidBecomeKey(_ notification: Notification) {
-        appState.showAdditionalInfo = true
+        Logger.debug(tag, "windowDidBecomeKey")
     }
     
     func windowDidResignKey(_ notification: Notification) {
-        appState.showAdditionalInfo = false
+        Logger.debug(tag, "windowDidResignKey")
+    }
+    
+    func windowDidBecomeMain(_ notification: Notification) {
+        Logger.debug(tag, "windowDidBecomeMain")
+    }
+    
+    func windowDidResignMain(_ notification: Notification) {
+        Logger.debug(tag, "windowDidResignMain")
+    }
+}
+
+class PipperWindow: NSWindow {
+    @Inject private var appState: AppState
+    
+    private var disposables = Set<AnyCancellable>()
+    
+    override var canBecomeKey: Bool { true }
+    override var canBecomeMain: Bool { true }
+    
+    func setup() {
+        hasShadow = false
+        backgroundColor = .clear
+        collectionBehavior = .canJoinAllSpaces
+        setContentSize(appState.windowSize)
+        styleMask = [.borderless, .miniaturizable, .resizable]
+        isOpaque = false
+        bindHovering()
     }
                        
     private func bindHovering() {
         appState.$isHovering
-            .sink { self.window?.level = $0 ? .floating : .normal }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] shouldHover in
+                self?.level = shouldHover ? .floating : .normal
+            }
             .store(in: &disposables)
     }
 }

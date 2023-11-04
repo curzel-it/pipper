@@ -13,6 +13,14 @@ struct PipperApp: App {
         WindowGroup {
             EmptyView().onWindow { $0.close() }
         }
+        .commands {
+            CommandGroup(replacing: .newItem) {}
+
+            CommandMenu("About") {
+                Button("About the project") { URL(string: "https://github.com/curzel-it/pipper")?.visit() }
+                Button("My YouTube Channel") { URL(string: "https://www.youtube.com/@BitTherapy")?.visit() }
+            }
+        }
     }
 }
 

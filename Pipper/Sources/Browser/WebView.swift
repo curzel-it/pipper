@@ -32,6 +32,10 @@ private class MyWebView: WKWebView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func validateProposedFirstResponder(_ responder: NSResponder, for event: NSEvent?) -> Bool {
+        true
+    }
+    
     private func bindUserAgent() {
         userAgentSink = appState.$userAgent.sink { userAgent in
             self.customUserAgent = userAgent
