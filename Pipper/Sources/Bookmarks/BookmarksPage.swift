@@ -8,6 +8,5 @@ struct BookmarksPage: View {
             BookmarksGrid()
         }
         .frame(minWidth: 320)
-        .padding(.horizontal, .md)   
     }
 }

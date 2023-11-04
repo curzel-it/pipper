@@ -38,6 +38,7 @@
 		641658932AF62887003C08EF /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641658922AF62887003C08EF /* Dependencies.swift */; };
 		641658952AF628C2003C08EF /* RuntimeEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641658942AF628C2003C08EF /* RuntimeEvents.swift */; };
 		641658982AF62993003C08EF /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 641658972AF62993003C08EF /* Swinject */; };
+		6416589B2AF640E2003C08EF /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6416589A2AF640E2003C08EF /* About.swift */; };
 		64FEDA892AF5871200C853EC /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FEDA882AF5871200C853EC /* Spacing.swift */; };
 		64FEDA8B2AF5871E00C853EC /* Stacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FEDA8A2AF5871E00C853EC /* Stacks.swift */; };
 		64FEDA8D2AF58FDE00C853EC /* WindowMover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FEDA8C2AF58FDE00C853EC /* WindowMover.swift */; };
@@ -86,6 +87,7 @@
 		1ED28CA32892DB1500D35DA4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		641658922AF62887003C08EF /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		641658942AF628C2003C08EF /* RuntimeEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeEvents.swift; sourceTree = "<group>"; };
+		6416589A2AF640E2003C08EF /* About.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
 		64FEDA882AF5871200C853EC /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		64FEDA8A2AF5871E00C853EC /* Stacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stacks.swift; sourceTree = "<group>"; };
 		64FEDA8C2AF58FDE00C853EC /* WindowMover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowMover.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				1E93EEC12895D1E2006CF96A /* UserMessages.swift */,
 				1ED28C9F2892C4A200D35DA4 /* WindowManager.swift */,
 				64FEDA8C2AF58FDE00C853EC /* WindowMover.swift */,
+				6416589A2AF640E2003C08EF /* About.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				1E6FD79928A0F38800021336 /* UserAgent.swift in Sources */,
 				1E3AFC9C2891C7C200C6A465 /* WebViewDelegate.swift in Sources */,
 				1E2EBC3D289281FF0008ECB3 /* ContentView.swift in Sources */,
+				6416589B2AF640E2003C08EF /* About.swift in Sources */,
 				1E6FD79328A0F34600021336 /* BookmarksGrid.swift in Sources */,
 				1E2EBC3F289282180008ECB3 /* AppState.swift in Sources */,
 				1EC926B7289F98BD0056E42C /* URLUtils.swift in Sources */,

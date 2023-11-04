@@ -15,7 +15,17 @@ struct ContentView: View {
             
             ZStack {                
                 WebView().opacity(appState.showHome ? 0 : 1)
-                BookmarksPage().padding(.top, .sm).opacity(appState.showHome ? 1 : 0)
+                
+                if appState.showHome {
+                    VStack {
+                        BookmarksPage()
+                        Spacer(minLength: Spacing.xl.rawValue)
+                        AboutView()
+                    }
+                    .padding(.horizontal, .md)
+                    .padding(.top, .sm)
+                    .padding(.bottom, .md)
+                }
                 
                 UserMessages()
                     .padding(.bottom, 50)
