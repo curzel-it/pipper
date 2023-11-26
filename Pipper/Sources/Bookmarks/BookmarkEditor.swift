@@ -66,6 +66,7 @@ private class BookmarkEditorViewModel: ObservableObject {
     
     func bindIconToUrl() {
         $url
+            .dropFirst()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] newUrl in self?.updateIcon(fromUrl: newUrl) }
             .store(in: &disposables)
