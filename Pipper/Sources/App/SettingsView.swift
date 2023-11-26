@@ -12,9 +12,22 @@ struct SettingsView: View {
             UserAgentSection()
             WindowSection()
             LaunchAtLoginSection()
+            EraseCookies()
             Footer().padding(.top)
         }
         .padding()
+    }
+}
+
+private struct EraseCookies: View {
+    var body: some View {
+        Button("Erase all Cookies") {
+            let storage = HTTPCookieStorage.shared
+            storage.cookies?.forEach {
+                storage.deleteCookie($0)
+            }
+        }
+        .positioned(.leading)
     }
 }
 

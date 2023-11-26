@@ -1,6 +1,7 @@
 import Combine
 import SwiftUI
 import WebKit
+import YWebView
 
 struct WebView: NSViewRepresentable {
     @EnvironmentObject var appState: AppState
@@ -14,7 +15,7 @@ struct WebView: NSViewRepresentable {
     }
 }
 
-private class MyWebView: WKWebView {
+private class MyWebView: YWebView {
     let appState: AppState
     
     private var userAgentSink: AnyCancellable!

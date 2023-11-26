@@ -35,6 +35,15 @@
         "revision" : "463cb2d659c8ae34899d18057ea5b1bb86fc3178",
         "version" : "2.8.4"
       }
+    },
+    {
+      "identity" : "ywebview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/haifengkao/YWebView",
+      "state" : {
+        "revision" : "2721c92326e140f2021d1d5f4c3137a5c54e8ca7",
+        "version" : "0.20.0"
+      }
     }
   ],
   "version" : 2
