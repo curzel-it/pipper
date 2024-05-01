@@ -45,22 +45,6 @@ class WindowManager: NSObject, NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
         runtimeEvents.send(.closing)
     }
-    
-    func windowDidBecomeKey(_ notification: Notification) {
-        Logger.debug(tag, "windowDidBecomeKey")
-    }
-    
-    func windowDidResignKey(_ notification: Notification) {
-        Logger.debug(tag, "windowDidResignKey")
-    }
-    
-    func windowDidBecomeMain(_ notification: Notification) {
-        Logger.debug(tag, "windowDidBecomeMain")
-    }
-    
-    func windowDidResignMain(_ notification: Notification) {
-        Logger.debug(tag, "windowDidResignMain")
-    }
 }
 
 class PipperWindow: NSWindow {

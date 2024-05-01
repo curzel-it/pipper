@@ -18,7 +18,7 @@ struct PipperApp: App {
 
             CommandMenu("About") {
                 Button("About the project") { URL(string: "https://github.com/curzel-it/pipper")?.visit() }
-                Button("My YouTube Channel") { URL(string: "https://www.youtube.com/@BitTherapy")?.visit() }
+                Button("My YouTube Channel") { URL(string: "https://www.youtube.com/@HiddenMugs")?.visit() }
             }
         }
     }
