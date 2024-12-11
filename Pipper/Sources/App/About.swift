@@ -45,8 +45,9 @@ private struct Socials: View {
     var body: some View {
         HStack(spacing: .sm) {
             SocialIcon(name: "github", link: "https://github.com/curzel-it/pipper")
-            SocialIcon(name: "twitter", link: "https://www.youtube.com/@HiddenMugs")
+            SocialIcon(name: "twitter", link: "https://x.com/@HiddenMugs")
             SocialIcon(name: "youtube", link: "https://www.youtube.com/@HiddenMugs")
+            SocialIcon(name: "sneakbit", link: "https://curzel.it/sneakbit")
         }
     }
 }

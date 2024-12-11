@@ -6,7 +6,7 @@ struct PipperApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
         
     init() {
-        Dependencies.setup()
+        Dependencies.setup()            
     }
     
     var body: some Scene {

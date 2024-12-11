@@ -14,6 +14,10 @@ class WindowManager: NSObject, NSWindowDelegate {
     override init() {
         super.init()
         runtimeEvents.send(.launching)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            self?.checkAndShowGameAlert()
+        }
     }
     
     func miniaturize() {
@@ -45,7 +49,39 @@ class WindowManager: NSObject, NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
         runtimeEvents.send(.closing)
     }
+    
+    private func checkAndShowGameAlert() {
+        guard !UserDefaults.standard.bool(forKey: kSneakBitAsked) else { return }
+        guard #available(macOS 14.0, *) else { return }
+        let currentDate = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+        guard currentDate.year == 2025, (currentDate.month ?? 0) < 2 else { return }
+        
+        UserDefaults.standard.set(true, forKey: kSneakBitAsked)
+        
+        let alert = NSAlert()
+        alert.messageText = "I made a videogame!"
+        alert.informativeText = "Do you want to check it out?\nIt's available for Windows, macOS, iOS, and Android.\n\nPs. Sorry for the interruption, this is a one time thing!"
+        
+        if let icon = NSImage(named: "sneakbit") {
+            alert.icon = icon
+        }
+        
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "Check it Out")
+        alert.addButton(withTitle: "Maybe Later")
+        
+        let response = alert.runModal()
+        if response == .alertFirstButtonReturn {
+            if let url = URL(string: "https://curzel.it/sneakbit") {
+                NSWorkspace.shared.open(url)
+            }
+        }
+        
+        alert.runModal()
+    }
 }
+
+private let kSneakBitAsked = "kSneakBitAsked1"
 
 class PipperWindow: NSWindow {
     @Inject private var appState: AppState

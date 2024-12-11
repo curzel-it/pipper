@@ -3,6 +3,12 @@ Just a webview in a window configured to be floating over other apps.<br>
 I sometimes like to have a window stay always visible on screen, so I did this.<br>
 If you have an ultrawide monitor I am sure you can understand!
 
+<div style="display: flex; gap: 10px; justify-content: left; margin: 20px 0;">
+    <a href="https://apps.apple.com/app/pipper/id1587335166">
+        <img src="docs/appstore_badge.webp" alt="App Store" style="width: 200px; height: auto;">
+    </a>
+</div>
+
 ## Use Cases
 ### MOTU AVB Mixer
 Thanks to James Steele from the MOTUnation [Forum](https://www.motunation.com/forum/index.php) and [YouTube Channel](https://www.youtube.com/user/MOTUNATION) for showing how Pipper can be used with the MOTU AVB Mixer [in this video](https://www.youtube.com/watch?v=uZrAAGjKsAI).
